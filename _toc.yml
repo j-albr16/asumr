@@ -14,6 +14,29 @@ parts:
         - file: ros2/setup/linux
         - file: ros2/setup/windows
         - file: ros2/setup/vm
+      - file: ros2/packages
+        sections: 
+        - file: ros2/packages/konzept.md
+        - file: ros2/packages/create.md
+        - file: ros2/packages/quiz.md
+      - file: ros2/node
       - file: ros2/topic
+        sections:
+          - file: ros2/topic/konzept.md
+          - file: ros2/topic/beispiel.md
+          - file: ros2/topic/aufgabe.md
+          - file: ros2/topic/quiz.md
+      - file: ros2/interface
+        sections:
+          - file: ros2/interface/konzept.md
+          - file: ros2/interface/beispiel.md
+          - file: ros2/interface/aufgabe.md
+          - file: ros2/interface/quiz.md
       - file: ros2/service
+        sections:
+          - file: ros2/service/konzept.md
+          - file: ros2/service/beispiel.md
+          - file: ros2/service/aufgabe.md
+          - file: ros2/service/quiz.md
+      - file: ros2/abschlussaufgabe
 

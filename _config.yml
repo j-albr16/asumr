@@ -8,7 +8,7 @@ logo: logo.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
+  execute_notebooks: auto
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -16,20 +16,8 @@ latex:
     targetname: asumr.tex
 
 # Add a bibtex file so that we can create citations
-bibtex_bibfiles:
-  - references.bib
-
-# Information about where the book exists on the web
-repository:
-  url: https://github.com/j-albr16/asumr
-  path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: main # Which branch of the repository should be used when creating links (optional)
-
-# jupyter hub
-launch_buttons:
-  # jupyterhub_url: https://jupyterhub.wwu.de/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fj-albr16%2Fasumr&branch=main&urlpath=lab%2Ftree%2Fasumr%2Fasumr_exercises%2F
-  jupyterhub_url: https://jupyterhub.wwu.de
-
+# bibtex_bibfiles:
+#   - references.bib
 
 
 # Add GitHub buttons to your book
@@ -37,3 +25,17 @@ launch_buttons:
 html:
   use_issues_button: true
   use_repository_button: true
+  use_edit_page_button: true
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/j-albr16/asumr
+  path_to_book: "" # Optional path to your book, relative to the repository root
+  branch: main # Which branch of the repository should be used when creating links (optional)
+
+# jupyter hub
+launch_buttons:
+  notebook_interface: "classic"
+  jupyterhub_url: "https://jupyterhub.wwu.de"
+
+

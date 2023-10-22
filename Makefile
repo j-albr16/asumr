@@ -1,4 +1,12 @@
-JB=$(. ../venv/bin/activate) jb
+VENV= $(. ../venv/bin/activate)
+JB=$(VENV) jb
+PYTHON=$(VENV) python3
+
 
 build:
-	jb build --all .
+	rm -rf _build
+	$(JB) clean .
+	$(JB) build --all .
+
+url:
+	$(PYTHON) jupyterhub.py

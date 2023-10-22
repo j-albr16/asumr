@@ -1,4 +1,4 @@
-# Setup für ROS2
+# Setup
 
 
 In den folgenden Sektionen wird die lokale Einrichtung von ROS2 beschrieben.

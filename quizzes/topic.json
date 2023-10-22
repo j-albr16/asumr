@@ -1,4 +1,4 @@
-{
+[{
         "question": "Enter the value of pi (will be checked to 2 decimal places):",
         "type": "numeric",
         "precision": 2,
@@ -26,4 +26,4 @@
                 "feedback": "pi is the area of a circle of radius 1. Try again."
             }
         ]
-}
+}]
