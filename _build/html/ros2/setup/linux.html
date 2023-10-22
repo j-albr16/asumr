@@ -174,6 +174,11 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../setup.html">Setup</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Linux</a></li>
+
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm.html">VM</a></li>
 </ul>
@@ -394,7 +399,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -410,6 +417,30 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Linux</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#version">Version</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setze-locales">Setze Locales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aktivierung-des-repositorys">Aktivierung des Repositorys</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-von-ros2">Installation von ROS2</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#uberprufung-der-installation">Überprüfung der Installation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#turtlesim">Turtlesim</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ausfuhrung">Ausführung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benutzung">Benutzung</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rqt">RQT</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -421,6 +452,114 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linux">
 <h1>Linux<a class="headerlink" href="#linux" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="version">
+<h1>Version<a class="headerlink" href="#version" title="Permalink to this heading">#</a></h1>
+<p>Dies ist eine Installationsanleitung für ROS2 Iron für Ubuntu 22.04 LTS (Jammy)</p>
+<p>Diese Anleitung basiert auf der Offiziellen <a class="reference external" href="https://docs.ros.org/en/iron/Installation/Ubuntu-Install-Debians.html">Installationsanleitung von ROS2 Iron für Ubuntu</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h1>
+<section id="setze-locales">
+<h2>Setze Locales<a class="headerlink" href="#setze-locales" title="Permalink to this heading">#</a></h2>
+<p>Überprüfe deine Locales ob <code class="docutils literal notranslate"><span class="pre">UTF-8</span></code> untersützt wird</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>locale
+</pre></div>
+</div>
+<p>wenn nicht führe Folgende Befehle aus:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>locales
+sudo<span class="w"> </span>locale-gen<span class="w"> </span>en_US<span class="w"> </span>en_US.UTF-8
+sudo<span class="w"> </span>update-locale<span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8<span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+<span class="nb">export</span><span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+</pre></div>
+</div>
+<p>Überprüfe mit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>locale
+</pre></div>
+</div>
+</section>
+<section id="aktivierung-des-repositorys">
+<h2>Aktivierung des Repositorys<a class="headerlink" href="#aktivierung-des-repositorys" title="Permalink to this heading">#</a></h2>
+<p>To enable the ROS2 Repository</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>software-properties-common
+sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>universe
+</pre></div>
+</div>
+<p>füge ROS2 GPG key hinzu</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl<span class="w"> </span>-y
+sudo<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </span>https://raw.githubusercontent.com/ros/rosdistro/master/ros.key<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/ros-archive-keyring.gpg
+</pre></div>
+</div>
+<p>Füge repo zur source list hinzu</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$UBUNTU_CODENAME</span><span class="k">)</span><span class="s2"> main&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/ros2.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</pre></div>
+</div>
+</section>
+<section id="installation-von-ros2">
+<h2>Installation von ROS2<a class="headerlink" href="#installation-von-ros2" title="Permalink to this heading">#</a></h2>
+<p>Installation von Updates</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
+</pre></div>
+</div>
+<p>Installation</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-iron-desktop
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="uberprufung-der-installation">
+<h1>Überprüfung der Installation<a class="headerlink" href="#uberprufung-der-installation" title="Permalink to this heading">#</a></h1>
+<p>In der 1. Terminal Instanz</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.<span class="w"> </span>/opt/ros/iron/setup.bash
+ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_ccp<span class="w"> </span>talker
+</pre></div>
+</div>
+<p>In der 2. Terminal Instanz</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.<span class="w"> </span>/opt/ros/iron/setup.bash
+ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_ccp<span class="w"> </span>listener
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="turtlesim">
+<h1>Turtlesim<a class="headerlink" href="#turtlesim" title="Permalink to this heading">#</a></h1>
+<section id="id1">
+<h2>Installation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-iron-turtlesim
+</pre></div>
+</div>
+<p>Überprüfe, dass das Turterlism Paket ist installiert:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>pkg<span class="w"> </span>executables<span class="w"> </span>turtlesim
+</pre></div>
+</div>
+<p>Folgendes sollte die Ausgabe sein:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">turtlesim</span> <span class="n">draw_square</span>
+<span class="n">turtlesim</span> <span class="n">mimic</span>
+<span class="n">turtlesim</span> <span class="n">turtle_teleop_key</span>
+<span class="n">turtlesim</span> <span class="n">turtlesim_node</span>
+</pre></div>
+</div>
+</section>
+<section id="ausfuhrung">
+<h2>Ausführung<a class="headerlink" href="#ausfuhrung" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node
+</pre></div>
+</div>
+</section>
+<section id="benutzung">
+<h2>Benutzung<a class="headerlink" href="#benutzung" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtle_teleop_key
+</pre></div>
+</div>
+<p>nun kann man die turtle mit den Pfeiltasten steuern</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="rqt">
+<h1>RQT<a class="headerlink" href="#rqt" title="Permalink to this heading">#</a></h1>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>~nros-iron-rqt*
+</pre></div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -477,6 +616,36 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Linux</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#version">Version</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setze-locales">Setze Locales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aktivierung-des-repositorys">Aktivierung des Repositorys</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-von-ros2">Installation von ROS2</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#uberprufung-der-installation">Überprüfung der Installation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#turtlesim">Turtlesim</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ausfuhrung">Ausführung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benutzung">Benutzung</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rqt">RQT</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
