@@ -16,6 +16,8 @@ kernelspec:
 Hier sind ein
 
 ```{code-cell} ipython3
+:tags: ["hide-output"]
+
 from jupyterquiz import display_quiz
 import json, requests
 
@@ -23,8 +25,6 @@ git_path="https://raw.githubusercontent.com/j-albr16/asumr/main/quizzes/topic.js
 
 r = requests.get(git_path)
 
-print(r.json())
-    
 display_quiz([r.json()])
 ```
 

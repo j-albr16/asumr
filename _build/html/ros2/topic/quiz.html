@@ -470,8 +470,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="quiz">
 <h1>Quiz<a class="headerlink" href="#quiz" title="Permalink to this heading">#</a></h1>
 <p>Hier sind ein</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jupyterquiz</span> <span class="kn">import</span> <span class="n">display_quiz</span>
 <span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">requests</span>
 
@@ -479,23 +479,23 @@ document.write(`
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">git_path</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
-    
 <span class="n">display_quiz</span><span class="p">([</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()])</span>
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;question&#39;: &#39;Enter the value of pi (will be checked to 2 decimal places):&#39;, &#39;type&#39;: &#39;numeric&#39;, &#39;precision&#39;: 2, &#39;answers&#39;: [{&#39;type&#39;: &#39;value&#39;, &#39;value&#39;: 3.14, &#39;correct&#39;: True, &#39;feedback&#39;: &#39;Correct.&#39;}, {&#39;type&#39;: &#39;range&#39;, &#39;range&#39;: [3.142857, 3.142858], &#39;correct&#39;: True, &#39;feedback&#39;: &#39;True to 2 decimal places, but you know pi is not really 22/7, right?&#39;}, {&#39;type&#39;: &#39;range&#39;, &#39;range&#39;: [-100000000, 0], &#39;correct&#39;: False, &#39;feedback&#39;: &#39;pi is the AREA of a circle of radius 1. Try again.&#39;}, {&#39;type&#39;: &#39;default&#39;, &#39;feedback&#39;: &#39;pi is the area of a circle of radius 1. Try again.&#39;}]}
-</pre></div>
-</div>
-<div class="output text_html"><div id="QjNVLEChKiKc" data-shufflequestions="False"
+<div class="output text_html"><div id="DsGvDUxmfJLH" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#QjNVLEChKiKc {
+#DsGvDUxmfJLH {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -665,7 +665,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsQjNVLEChKiKc=[{"question": "Enter the value of pi (will be checked to 2 decimal places):", "type": "numeric", "precision": 2, "answers": [{"type": "value", "value": 3.14, "correct": true, "feedback": "Correct."}, {"type": "range", "range": [3.142857, 3.142858], "correct": true, "feedback": "True to 2 decimal places, but you know pi is not really 22/7, right?"}, {"type": "range", "range": [-100000000, 0], "correct": false, "feedback": "pi is the AREA of a circle of radius 1. Try again."}, {"type": "default", "feedback": "pi is the area of a circle of radius 1. Try again."}]}];
+</style></div><script type="application/javascript">var questionsDsGvDUxmfJLH=[[{"question": "Enter the value of pi (will be checked to 2 decimal places):", "type": "numeric", "precision": 2, "answers": [{"type": "value", "value": 3.14, "correct": true, "feedback": "Correct."}, {"type": "range", "range": [3.142857, 3.142858], "correct": true, "feedback": "True to 2 decimal places, but you know pi is not really 22/7, right?"}, {"type": "range", "range": [-100000000, 0], "correct": false, "feedback": "pi is the AREA of a circle of radius 1. Try again."}, {"type": "default", "feedback": "pi is the area of a circle of radius 1. Try again."}]}]];
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -1414,8 +1414,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("QjNVLEChKiKc")) {
-            show_questions(questionsQjNVLEChKiKc,  QjNVLEChKiKc); 
+          if(document.getElementById("DsGvDUxmfJLH")) {
+            show_questions(questionsDsGvDUxmfJLH,  DsGvDUxmfJLH); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1424,12 +1424,13 @@ if (typeof version == 'undefined') {
         {
         // console.log(element);
 
-        //console.log("QjNVLEChKiKc");
-        // console.log(document.getElementById("QjNVLEChKiKc"));
+        //console.log("DsGvDUxmfJLH");
+        // console.log(document.getElementById("DsGvDUxmfJLH"));
 
         try_show();
         }
         </script></div>
+</details>
 </div>
 </section>
 
