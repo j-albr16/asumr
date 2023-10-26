@@ -26,35 +26,26 @@
     ]
     }
     ,
-  {
-        "question": "Choose all of the following that can be included in Jupyter notebooks?",
-        "type": "single_choice",
-        "answers": [
-            {
-                "answer": "Text and graphics output from Python",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "Typeset mathematics",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "Python executable code",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "Formatted text",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "Live snakes via Python",
-                "correct": false,
-                "feedback": "I hope not."
-            }
-        ]
-    }
+
+{
+    "question": "What is the role of a ROS 2 Publisher?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "Receives data from a ROS 2 Topic.",
+            "correct": false,
+            "feedback": "Publishers send data to a Topic, they don't receive data from it."
+        },
+        {
+            "answer": "Sends data to a ROS 2 Topic.",
+            "correct": true,
+            "feedback": "Correct! Publishers send data to Topics."
+        },
+        {
+            "answer": "Provides ROS 2 services to other nodes.",
+            "correct": false,
+            "feedback": "This is the role of Service Servers, not Publishers."
+        }
+    ]
+}
 ]
