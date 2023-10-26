@@ -2,10 +2,11 @@ VENV= $(. ../venv/bin/activate)
 JB=$(VENV) jb
 PYTHON=$(VENV) python3
 
+clean:
+	rm -rf _build
+	jb clean .
 
 build:
-	rm -rf _build;
-	sleep 1;
 	$(JB) build --all .
 
 url:

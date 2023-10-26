@@ -1,7 +1,7 @@
 [
     {
     "question": "What is the purpose of a ROS 2 Topic?",
-    "type": "multiple-choice",
+    "type": "many_choice",
     "answers": [
         {
             "answer": "To exchange synchronous requests and responses between nodes.",
@@ -28,7 +28,7 @@
     ,
   {
         "question": "Choose all of the following that can be included in Jupyter notebooks?",
-        "type": "multiple-choice",
+        "type": "single_choice",
         "answers": [
             {
                 "answer": "Text and graphics output from Python",
