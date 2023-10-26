@@ -28,7 +28,7 @@
     ,
   {
         "question": "Choose all of the following that can be included in Jupyter notebooks?",
-        "type": "many_choice",
+        "type": "multiple-choice",
         "answers": [
             {
                 "answer": "Text and graphics output from Python",
