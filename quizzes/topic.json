@@ -4,25 +4,57 @@
     "type": "multiple-choice",
     "answers": [
         {
-            "text": "To exchange synchronous requests and responses between nodes.",
+            "answer": "To exchange synchronous requests and responses between nodes.",
             "correct": false,
             "feedback": "This is the purpose of ROS 2 Services, not Topics."
         },
         {
-            "text": "To exchange asynchronous data streams between nodes.",
+            "answer": "To exchange asynchronous data streams between nodes.",
             "correct": true,
             "feedback": "Correct! ROS 2 Topics are used for asynchronous data exchange."
         },
         {
-            "text": "To define custom data types for ROS 2 messages.",
+            "answer": "To define custom data types for ROS 2 messages.",
             "correct": false,
             "feedback": "This is more related to message definitions, but not the primary purpose of Topics."
         },
         {
-            "text": "To control the execution flow of a ROS 2 system.",
+            "answer": "To control the execution flow of a ROS 2 system.",
             "correct": false,
             "feedback": "Execution flow control is not a typical use case for ROS 2 Topics."
         }
     ]
+    }
+    ,
+  {
+        "question": "Choose all of the following that can be included in Jupyter notebooks?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "Text and graphics output from Python",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Typeset mathematics",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Python executable code",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Formatted text",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Live snakes via Python",
+                "correct": false,
+                "feedback": "I hope not."
+            }
+        ]
     }
 ]

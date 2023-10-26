@@ -4,8 +4,8 @@ PYTHON=$(VENV) python3
 
 
 build:
-	rm -rf _build
-	$(JB) clean .
+	rm -rf _build;
+	sleep 1;
 	$(JB) build --all .
 
 url:
