@@ -13,10 +13,7 @@ kernelspec:
 # Quiz
 
 
-Hier sind ein
-
 ```{code-cell} ipython3
-:tags: ["hide-output"]
 
 from jupyterquiz import display_quiz
 import json, requests

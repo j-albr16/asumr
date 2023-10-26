@@ -1,29 +1,28 @@
-[{
-        "question": "Enter the value of pi (will be checked to 2 decimal places):",
-        "type": "numeric",
-        "precision": 2,
-        "answers": [
-            {
-                "type": "value",
-                "value": 3.14,
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "type": "range",
-                "range": [ 3.142857, 3.142858], 
-                "correct": true,
-                "feedback": "True to 2 decimal places, but you know pi is not really 22/7, right?"
-            },
-            {
-                "type": "range",
-                "range": [ -100000000, 0], 
-                "correct": false,
-                "feedback": "pi is the AREA of a circle of radius 1. Try again."
-            },
-            {
-                "type": "default",
-                "feedback": "pi is the area of a circle of radius 1. Try again."
-            }
-        ]
-}]
+[
+    {
+    "question": "What is the purpose of a ROS 2 Topic?",
+    "type": "multiple-choice",
+    "options": [
+        {
+            "text": "To exchange synchronous requests and responses between nodes.",
+            "correct": false,
+            "feedback": "This is the purpose of ROS 2 Services, not Topics."
+        },
+        {
+            "text": "To exchange asynchronous data streams between nodes.",
+            "correct": true,
+            "feedback": "Correct! ROS 2 Topics are used for asynchronous data exchange."
+        },
+        {
+            "text": "To define custom data types for ROS 2 messages.",
+            "correct": false,
+            "feedback": "This is more related to message definitions, but not the primary purpose of Topics."
+        },
+        {
+            "text": "To control the execution flow of a ROS 2 system.",
+            "correct": false,
+            "feedback": "Execution flow control is not a typical use case for ROS 2 Topics."
+        }
+    ]
+    }
+]

@@ -258,37 +258,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://jupyterhub.wwu.de/hub/user-redirect/git-pull?repo=https%3A//github.com/j-albr16/asumr&urlpath=tree/asumr/ros2/topic/konzept.md&branch=main" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onJupyterHub"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../_static/images/logo_jupyterhub.svg">
-  </span>
-<span class="btn__text-container">JupyterHub</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -358,23 +327,6 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../../_sources/ros2/topic/konzept.ipynb" target="_blank"
-   class="btn btn-sm btn-download-notebook-button dropdown-item"
-   title="Download notebook file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
       
       
       
@@ -474,24 +426,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="konzept">
 <h1>Konzept<a class="headerlink" href="#konzept" title="Permalink to this heading">#</a></h1>
-<p>Here is some text for explaining a topic</p>
-<p>Now some code block</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">note</span> <span class="o">=</span> <span class="s2">&quot;Python syntax highlighting&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python syntax highlighting
-</pre></div>
-</div>
-</div>
-</div>
-<p>Finished</p>
-<p>Here is the notebook
-<a class="reference external" href="https://jupyterhub.wwu.de/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fj-albr16%2Fasumr&amp;branch=main&amp;urlpath=lab%2Ftree%2Fasumr%2Fros2%2Ftopic%2Fquiz.ipynb%2F">link</a></p>
+<p>Ein ROS 2 (Robot Operating System 2) Topic ist ein grundlegendes Kommunikationskonzept in ROS 2, das dazu dient, Daten zwischen verschiedenen Komponenten eines Roboters oder einer Robotersystemarchitektur auszutauschen. ROS 2 ist ein flexibles und modulares Framework zur Entwicklung von Robotersoftware, und Topics sind eine wichtige Möglichkeit, um Informationen zwischen Knoten (Nodes) in einem ROS 2-System zu übertragen.</p>
+<p>Hier sind die wichtigsten Merkmale und Konzepte eines ROS 2 Topics:</p>
+<ol class="arabic simple">
+<li><p><strong>Nachrichten</strong>: Topics dienen dem Austausch von Nachrichten. Nachrichten sind Datenstrukturen, die Informationen übertragen. Sie können einfache Datentypen wie Zahlen oder komplexere Strukturen wie Sensorwerte, Bildinformationen oder Steuerbefehle enthalten. ROS 2 unterstützt benutzerdefinierte Nachrichtentypen.</p></li>
+<li><p><strong>Publisher und Subscriber</strong>: Ein ROS 2-System besteht aus Knoten, die Publisher und/oder Subscriber für verschiedene Topics sein können. Ein Publisher ist ein Knoten, der Nachrichten zu einem bestimmten Topic sendet, während ein Subscriber ein Knoten ist, der Nachrichten von diesem Topic empfängt.</p></li>
+<li><p><strong>Topic-Namen</strong>: Jedes Topic hat einen eindeutigen Namen im ROS 2-System. Dieser Name ermöglicht es Knoten, die Nachrichten austauschen möchten, das entsprechende Topic zu identifizieren. Der Name folgt normalerweise einem bestimmten Namensschema, z.B., “/sensor_data” oder “/robot_status”.</p></li>
+<li><p><strong>Nachrichten-Publizieren</strong>: Ein Knoten, der Informationen bereitstellen möchte, erstellt einen Publisher für ein bestimmtes Topic und veröffentlicht Nachrichten auf diesem Topic. Andere Knoten können dann diese Nachrichten abrufen.</p></li>
+<li><p><strong>Nachrichten-Abonnieren</strong>: Ein Knoten, der Informationen benötigt, erstellt einen Subscriber für ein bestimmtes Topic und abonniert dieses Topic. Wenn ein Publisher Nachrichten auf diesem Topic veröffentlicht, werden sie automatisch an alle Subscriber weitergeleitet.</p></li>
+<li><p><strong>Rosa1 ROS 2 Middleware</strong>: ROS 2 verwendet ein Middleware-Kommunikationssystem, um den Nachrichtenaustausch zwischen Knoten zu ermöglichen. Dieses Middleware-System ermöglicht es, Nachrichten zwischen Knoten, die auf verschiedenen physischen oder virtuellen Rechnern laufen, auszutauschen.</p></li>
+<li><p><strong>Nachrichten-Synchronisation</strong>: ROS 2 ermöglicht auch die Synchronisation von Nachrichten, sodass Knoten Nachrichten empfangen können, die zeitlich synchronisiert sind. Dies ist insbesondere in Anwendungen wichtig, in denen zeitliche Koordination erforderlich ist, wie bei der Robotik.</p></li>
+</ol>
+<p>Insgesamt ermöglichen ROS 2 Topics die Kommunikation und den Datenaustausch zwischen den Komponenten eines Roboters oder Robotersystems auf eine strukturierte und modulare Weise. Dies fördert die Wiederverwendbarkeit von Softwarekomponenten und die Skalierbarkeit von Robotersystemen.</p>
 </section>
 
     <script type="text/x-thebe-config">
