@@ -14,6 +14,7 @@ kernelspec:
 
 
 ```{code-cell} ipython3
+:tags: ["hide-input"]
 
 from jupyterquiz import display_quiz
 import json, requests
@@ -21,7 +22,6 @@ import json, requests
 git_path="https://raw.githubusercontent.com/j-albr16/asumr/main/quizzes/topic.json"
 
 r = requests.get(git_path)
-print(r.json())
 
 display_quiz(r.json())
 ```

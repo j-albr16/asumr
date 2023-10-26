@@ -1,0 +1,68 @@
+[
+
+{
+    "question": "What is the primary purpose of a ROS 2 interface definition?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "To define the source code of a ROS 2 package.",
+            "correct": false,
+            "feedback": "Source code is defined in the package's source files, not in interface definitions."
+        },
+        {
+            "answer": "To declare package dependencies and metadata.",
+            "correct": false,
+            "feedback": "Package dependencies and metadata are declared in the `package.xml`, not in interface definitions."
+        },
+        {
+            "answer": "To specify the structure of ROS 2 messages, services, or actions.",
+            "correct": true,
+            "feedback": "Correct! ROS 2 interfaces define the structure of messages, services, or actions."
+        }
+    ]
+},
+
+{
+    "question": "What is the benefit of using ROS 2 interfaces for message definitions?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "They enable the execution of ROS 2 services.",
+            "correct": false,
+            "feedback": "ROS 2 interfaces are primarily used for messages, not services."
+        },
+        {
+            "answer": "They promote code reusability and consistency across ROS 2 nodes.",
+            "correct": true,
+            "feedback": "Correct! ROS 2 interfaces help maintain code consistency and reusability."
+        },
+        {
+            "answer": "They define hardware requirements for ROS 2 nodes.",
+            "correct": false,
+            "feedback": "Hardware requirements are typically not part of ROS 2 interfaces."
+        }
+    ]
+}
+,
+{
+    "question": "What is the benefit of using ROS 2 interfaces for message definitions?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "They enable the execution of ROS 2 services.",
+            "correct": false,
+            "feedback": "ROS 2 interfaces are primarily used for messages, not services."
+        },
+        {
+            "answer": "They promote code reusability and consistency across ROS 2 nodes.",
+            "correct": true,
+            "feedback": "Correct! ROS 2 interfaces help maintain code consistency and reusability."
+        },
+        {
+            "answer": "They define hardware requirements for ROS 2 nodes.",
+            "correct": false,
+            "feedback": "Hardware requirements are typically not part of ROS 2 interfaces."
+        }
+    ]
+}
+]

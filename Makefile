@@ -7,7 +7,15 @@ clean:
 	jb clean .
 
 build:
-	$(JB) build --all .
+	$(JB) build --all .;
+
 
 url:
 	$(PYTHON) jupyterhub.py
+
+server:
+	python3 -m http.server 8000 --directory _build/html
+
+pid: 
+	sudo lsof -i :8000
+

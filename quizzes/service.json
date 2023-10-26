@@ -1,0 +1,66 @@
+[
+{
+    "question": "What is the primary role of a ROS 2 Service Server?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "Receives and processes asynchronous data from other nodes.",
+            "correct": false,
+            "feedback": "This is typically the role of a ROS 2 Subscriber, not a Service Server."
+        },
+        {
+            "answer": "Provides a way for other nodes to make synchronous requests and receive responses.",
+            "correct": true,
+            "feedback": "Correct! Service Servers enable synchronous communication in ROS 2."
+        },
+        {
+            "answer": "Publishes data to a ROS 2 Topic for consumption by other nodes.",
+            "correct": false,
+            "feedback": "This is the role of a ROS 2 Publisher, not a Service Server."
+        }
+    ]
+},
+{
+    "question": "What is a ROS 2 Service Client responsible for?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "Receiving and processing data from a ROS 2 Topic.",
+            "correct": false,
+            "feedback": "Service Clients are for making synchronous requests to Service Servers, not Topics."
+        },
+        {
+            "answer": "Providing services to other nodes in the network.",
+            "correct": false,
+            "feedback": "Service Clients make requests, they don't provide services."
+        },
+        {
+            "answer": "Making synchronous requests to a ROS 2 Service Server and receiving responses.",
+            "correct": true,
+            "feedback": "Correct! Service Clients are used for making requests and receiving responses from Service Servers."
+        }
+    ]
+},
+
+{
+    "question": "Which communication pattern best describes ROS 2 Services?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "Asynchronous data exchange.",
+            "correct": false,
+            "feedback": "This is more characteristic of ROS 2 Topics."
+        },
+        {
+            "answer": "Synchronous request and response.",
+            "correct": true,
+            "feedback": "Correct! ROS 2 Services facilitate synchronous communication."
+        },
+        {
+            "answer": "One-way data publishing.",
+            "correct": false,
+            "feedback": "This is typical of ROS 2 Publishers, not Services."
+        }
+    ]
+}
+]

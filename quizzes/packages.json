@@ -1,0 +1,65 @@
+[
+{
+    "question": "What is the purpose of a `package.xml` file in a ROS 2 package?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "To specify the hardware requirements of the package.",
+            "correct": false,
+            "feedback": "The `package.xml` file primarily specifies metadata about the package, not hardware requirements."
+        },
+        {
+            "answer": "To declare package dependencies and metadata about the package.",
+            "correct": true,
+            "feedback": "Correct! The `package.xml` file provides information about package dependencies and metadata."
+        },
+        {
+            "answer": "To define the source code of the package.",
+            "correct": false,
+            "feedback": "Source code is typically defined in the `CMakeLists.txt` and source files, not the `package.xml`."
+        }
+    ]
+},
+{
+    "question": "What is the purpose of the `CMakeLists.txt` file in a ROS 2 package?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "To declare package dependencies.",
+            "correct": false,
+            "feedback": "Package dependencies are typically declared in the `package.xml`, not `CMakeLists.txt`."
+        },
+        {
+            "answer": "To specify build rules and configure the package for compilation.",
+            "correct": true,
+            "feedback": "Correct! `CMakeLists.txt` defines how the package should be built."
+        },
+        {
+            "answer": "To list the source files in the package.",
+            "correct": false,
+            "feedback": "Source files are typically listed in `CMakeLists.txt`, but it's not the primary purpose of the file."
+        }
+    ]
+},
+{
+    "question": "What does a ROS 2 launch file do in a package?",
+    "type": "many_choice",
+    "answers": [
+        {
+            "answer": "Specifies the package dependencies.",
+            "correct": false,
+            "feedback": "Package dependencies are declared in the `package.xml` and `CMakeLists.txt`, not in launch files."
+        },
+        {
+            "answer": "Configures the build process of the package.",
+            "correct": false,
+            "feedback": "The build process is typically configured in `CMakeLists.txt`, not launch files."
+        },
+        {
+            "answer": "Defines how to start and configure the nodes and parameters in the package.",
+            "correct": true,
+            "feedback": "Correct! A launch file is used to specify how nodes should be launched and configured."
+        }
+    ]
+}
+]
