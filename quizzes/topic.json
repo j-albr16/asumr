@@ -2,7 +2,7 @@
     {
     "question": "What is the purpose of a ROS 2 Topic?",
     "type": "multiple-choice",
-    "options": [
+    "answers": [
         {
             "text": "To exchange synchronous requests and responses between nodes.",
             "correct": false,

@@ -22,7 +22,7 @@ git_path="https://raw.githubusercontent.com/j-albr16/asumr/main/quizzes/topic.js
 
 r = requests.get(git_path)
 
-display_quiz([r.json()])
+display_quiz(r.json())
 ```
 
 
