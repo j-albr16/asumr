@@ -6,7 +6,37 @@ root: intro
 parts: 
   - caption: Vorlesung
     chapters: 
-      - file: vorlesung/pid-controller
+      - file: vorlesung/Autonomie
+        sections:
+        - file: vorlesung/Autonomie/quizzes
+      - file: vorlesung/Locomotion
+        sections:
+        - file: vorlesung/Locomotion/quizzes
+      - file: vorlesung/Kinematik
+        sections: 
+        - file: vorlesung/Kinematik/fw_kinematic_simplify
+        - file: vorlesung/Kinematik/inverse_animated_arm
+        - file: vorlesung/Kinematik/kinematics_arm
+        - file: vorlesung/Kinematik/robotictoolbox_example
+        - file: vorlesung/Kinematik/quizzes
+      - file: vorlesung/Pid-Controller
+        sections:
+        - file: vorlesung/Pid-Controller/pid_robot_car
+        - file: vorlesung/Pid-Controller/pid_robot_car_noise
+        - file: vorlesung/Pid-Controller/pid_robot_non_interactive
+      - file: vorlesung/Sensorik
+        sections:
+        - file: vorlesung/Sensorik/quizzes
+      - file: vorlesung/Architekturen
+        sections:
+        - file: vorlesung/Architekturen/quizzes
+      - file: vorlesung/Localisation
+        sections:
+        - file: vorlesung/Localisation/quizzes
+      - file: vorlesung/PathPlanning
+        sections:
+          - file: vorlesung/PathPlanning/quizzes
+          - file: vorlesung/PathPlanning/dijkstra
   - caption: ROS 2
     chapters:
       - file: ros2/setup
@@ -18,8 +48,14 @@ parts:
         sections: 
         - file: ros2/packages/konzept
         - file: ros2/packages/create.md
+        - file: ros2/packages/launch.md
         - file: ros2/packages/quiz.md
       - file: ros2/node
+        sections: 
+          - file: ros2/node/konzept
+          - file: ros2/node/beispiel.md
+          - file: ros2/node/aufgabe.md
+          - file: ros2/node/quiz.md
       - file: ros2/topic
         sections:
           - file: ros2/topic/konzept
@@ -38,5 +74,10 @@ parts:
           - file: ros2/service/beispiel.md
           - file: ros2/service/aufgabe.md
           - file: ros2/service/quiz.md
+      - file: ros2/navigation
+        sections: 
+          - file: ros2/navigation/setup.md
+          - file: ros2/navigation/example.md
+          - file: ros2/navigation/aufgabe.md
       - file: ros2/abschlussaufgabe
 

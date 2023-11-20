@@ -20,11 +20,11 @@ asumr_package/
 
 Erklärung:
 
-**package.xml** Metainformationen 
-**resource/<package_name>** Marker file für Package
-**setup.cfg** Muss vorhanden sein wenn das Package Executables besitzt (Damit `ros2 run` funktioniert)
-**setup.py** Build Script zum installieren des Packages
-**<package_name>** Wird von ROS2 tools verwendet, um das Package zu finden
+- **package.xml** Metainformationen 
+- **resource/<package_name>** Marker file für Package
+- **setup.cfg** Muss vorhanden sein wenn das Package Executables besitzt (Damit `ros2 run` funktioniert)
+- **setup.py** Build Script zum installieren des Packages
+- **<package_name>** Wird von ROS2 tools verwendet, um das Package zu finden
 
 
 

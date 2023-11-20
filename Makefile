@@ -1,21 +1,23 @@
-VENV= $(. ../venv/bin/activate)
-JB=$(VENV) jb
-PYTHON=$(VENV) python3
+JB = jb
 
 clean:
 	rm -rf _build
 	jb clean .
 
-build:
+build: 
 	$(JB) build --all .;
+	make include
 
 
 url:
-	$(PYTHON) jupyterhub.py
+	python3 jupyterhub.py
 
 server:
-	python3 -m http.server 8000 --directory _build/html
+	python3 api/main.py
 
 pid: 
 	sudo lsof -i :8000
+
+include: _build/html/intro.html chat/chat_button.html
+	python3 chat/insert-html.py
 

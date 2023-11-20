@@ -1,11 +1,7 @@
-# Welcome to your Jupyter Book
+# Über dieses Material
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+Die ROS2 Dokumentation orientiert sich stark an der offiziellen ROS2 [doku](https://docs.ros.org/en/iron/). Man diese Gut zur Wissenserweiterung oder als Englische Anleitung verwenden.
 
-Check out the content pages bundled with this sample book to see more.
 
 ```{tableofcontents}
 ```
