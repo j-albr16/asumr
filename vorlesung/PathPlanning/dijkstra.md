@@ -16,12 +16,63 @@ kernelspec:
 
 ## Aufgabe 1
 
-Implementieren Sie eine `MapSolver` Klasse, die den Dijkstra ablgorithmus verwendet um den kürzesten Weg zwischen einem Startpunkt (Tupel, z.b. (1,2)) und einem Endpunkt (Tupel, z.B. (3,4)) berechnet.
-
+Implementieren Sie eine `MapSolver` Klasse, die den Dijkstra ablgorithmus verwendet um den kürzesten Weg zwischen einem Startpunkt (Tupel, z.b. `(1,2)`) und einem Endpunkt (Tupel, z.B. `(3,4)`) berechnet.
 
 
 ```{note}
 Sollten Sie noch weitere Methoden oder Klassen benötigen, können Sie diese gerne zusätzlich implementieren.
+```
+
+Folgendes sind die Inputs für die Klasse:
+
+- map_: 2D Numpy Array. Alle wände haben den Wert `np.inf` und alle begehbaren Felder haben den Wert `0`
+
+Beispiel:
+
+```
+[
+[0, np.inf, np.inf],
+[0,   0   , 0     ],
+[0, np.inf, np.inf],
+]
+```
+
+- start: Tuple. Tupel, dass die indizes für die Startposition auf der Map enthält
+
+Beispiel:
+
+```
+(0,0)
+```
+
+- end: Tuple. Tupel, dass die indizes für die Endosition auf der Map enthält
+
+Beispiel:
+
+```
+(1,2)
+```
+
+Die zu implementierende `__call__` Methode soll ein Tupel mit folgendem Inhalt zurück geben:
+
+1. distance_map: 2D Numpy Array. Enthält alle Distanzen zur start Position. Die Dimension ist die selbe wie die Dimension der Input Map.
+
+Beispiel:
+
+```
+[
+[0, np.inf, np.inf],
+[1,   2   , 3     ],
+[2, np.inf, np.inf],
+]
+```
+
+
+2. path: Liste and Tupel: Liste an Positionen vom Start- bis zum Endpunkt.
+
+
+```
+[(0,0), (1,0), (1,1), (1,2)]
 ```
 
 
@@ -34,11 +85,6 @@ import json
 import os
 ```
 
-Setze folgende Einstellung auf `True`, wenn du möchtest, dass dein selbst geschriebener `MapSolver` verwendet werden soll.
-
-```{code-cell} ipython3
-USE_SOLVER = False
-```
 
 ```{code-cell} ipython3
 class MapSolver:
@@ -122,6 +168,7 @@ class MapValidator:
 ```
 
 ```{code-cell} ipython3
+:tags: ["hide-input"]
 
 class MapGenerator:
     """
@@ -303,7 +350,7 @@ class MapViewer:
 
     def __call__(self):
 
-        fig, axs = plt.subplots(2, len(self.dataset), figsize=(1, 1))
+        fig, axs = plt.subplots(2, len(self.dataset), figsize=(10, 10))
 
         for i, ax_col in enumerate(axs.T):
             img, original_map = self._transform_map(
@@ -319,14 +366,17 @@ class MapViewer:
         plt.show()
 ```
 
+## Beispiel Output
 
 ```{code-cell} ipython3
-:tags: ["full-width", "output_scroll"]
-if USE_SOLVER:
-    dataset = MapDataset(solver=MapSolver)
-else:
-    dataset = MapDataset(load=True)
+dataset = MapDataset(load=True)
+MapViewer(dataset)()
+```
 
+## Output
+
+```{code-cell} ipython3
+dataset = MapDataset(solver=MapSolver)
 MapViewer(dataset)()
 ```
 
