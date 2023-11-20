@@ -14,9 +14,9 @@ kernelspec:
 
 # Dijkstra
 
-## Aufgabe 1
+## Aufgabe
 
-Implementieren Sie eine `MapSolver` Klasse, die den Dijkstra ablgorithmus verwendet um den kürzesten Weg zwischen einem Startpunkt (Tupel, z.b. `(1,2)`) und einem Endpunkt (Tupel, z.B. `(3,4)`) berechnet.
+Implementieren Sie eine `MapSolver` Klasse, die den Dijkstra ablgorithmus verwendet um den kürzesten Weg zwischen einem Startpunkt und einem Endpunkt berechnet.
 
 
 ```{note}
@@ -25,19 +25,17 @@ Sollten Sie noch weitere Methoden oder Klassen benötigen, können Sie diese ger
 
 Folgendes sind die Inputs für die Klasse:
 
-- map_: 2D Numpy Array. Alle wände haben den Wert `np.inf` und alle begehbaren Felder haben den Wert `0`
+- **map_:** 2D Numpy Array. Alle wände haben den Wert `np.inf` und alle begehbaren Felder haben den Wert `0`
 
 Beispiel:
 
 ```
-[
-[0, np.inf, np.inf],
-[0,   0   , 0     ],
-[0, np.inf, np.inf],
-]
+[[0, np.inf, np.inf],
+ [0,   0   , 0     ],
+ [0, np.inf, np.inf]]
 ```
 
-- start: Tuple. Tupel, dass die indizes für die Startposition auf der Map enthält
+- **start:** Tuple. Tupel, dass die indizes für die Startposition auf der Map enthält
 
 Beispiel:
 
@@ -55,20 +53,18 @@ Beispiel:
 
 Die zu implementierende `__call__` Methode soll ein Tupel mit folgendem Inhalt zurück geben:
 
-1. distance_map: 2D Numpy Array. Enthält alle Distanzen zur start Position. Die Dimension ist die selbe wie die Dimension der Input Map.
+1. **distance_map:** 2D Numpy Array. Enthält alle Distanzen zur start Position. Die Dimension ist die selbe wie die Dimension der Input Map.
 
 Beispiel:
 
 ```
-[
-[0, np.inf, np.inf],
-[1,   2   , 3     ],
-[2, np.inf, np.inf],
-]
+[[0, np.inf, np.inf],
+ [1,   2   , 3     ],
+ [2, np.inf, np.inf]]
 ```
 
 
-2. path: Liste and Tupel: Liste an Positionen vom Start- bis zum Endpunkt.
+2. **path:** Liste and Tupel: Liste an Positionen vom Start- bis zum Endpunkt.
 
 
 ```
@@ -124,10 +120,24 @@ class MapSolver:
 
     def __call__(self):
         """
+        calculates shortest path for given map from start to end position.
+        Also returns the calculated distances from every position to start position
+
         :return (distance_map, path): 2d array, list of all positions from start to end
         """
+        distance_map, path = None, None 
+
         # your code here
-        pass
+
+        
+        # Bitte folgende 2 Zeilen nach Implementation löschen
+        distance_map = self.map
+        path = []
+
+        assert distance_map.shape == self.map.shape, "distance_map must have the same shape as self.map"
+        assert isinstance(path, list)
+
+        return distance_map, path
 ```
 
 Wenn Sie wollen, können Sie folgende Helfer Klasse verwenden:
