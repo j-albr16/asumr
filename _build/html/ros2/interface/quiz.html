@@ -200,6 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vorlesung/Localisation.html">Localisation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../vorlesung/Localisation/quizzes.html">Quizzes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vorlesung/Localisation/markov.html">Markov Lokalisation</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vorlesung/PathPlanning.html">Path Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -523,7 +524,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="quiz">
+  <section id="quiz">
 <h1>Quiz<a class="headerlink" href="#quiz" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -542,13 +543,13 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="hAxjfDKgRBQO" data-shufflequestions="False"
+<div class="output text_html"><div id="eBGImZxjOdij" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#hAxjfDKgRBQO {
+#eBGImZxjOdij {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -718,7 +719,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionshAxjfDKgRBQO=[{"question": "What is the primary purpose of a ROS 2 interface definition?", "type": "many_choice", "answers": [{"answer": "To define the source code of a ROS 2 package.", "correct": false, "feedback": "Source code is defined in the package's source files, not in interface definitions."}, {"answer": "To declare package dependencies and metadata.", "correct": false, "feedback": "Package dependencies and metadata are declared in the `package.xml`, not in interface definitions."}, {"answer": "To specify the structure of ROS 2 messages, services, or actions.", "correct": true, "feedback": "Correct! ROS 2 interfaces define the structure of messages, services, or actions."}]}, {"question": "What is the benefit of using ROS 2 interfaces for message definitions?", "type": "many_choice", "answers": [{"answer": "They enable the execution of ROS 2 services.", "correct": false, "feedback": "ROS 2 interfaces are primarily used for messages, not services."}, {"answer": "They promote code reusability and consistency across ROS 2 nodes.", "correct": true, "feedback": "Correct! ROS 2 interfaces help maintain code consistency and reusability."}, {"answer": "They define hardware requirements for ROS 2 nodes.", "correct": false, "feedback": "Hardware requirements are typically not part of ROS 2 interfaces."}]}, {"question": "What is the benefit of using ROS 2 interfaces for message definitions?", "type": "many_choice", "answers": [{"answer": "They enable the execution of ROS 2 services.", "correct": false, "feedback": "ROS 2 interfaces are primarily used for messages, not services."}, {"answer": "They promote code reusability and consistency across ROS 2 nodes.", "correct": true, "feedback": "Correct! ROS 2 interfaces help maintain code consistency and reusability."}, {"answer": "They define hardware requirements for ROS 2 nodes.", "correct": false, "feedback": "Hardware requirements are typically not part of ROS 2 interfaces."}]}];
+</style></div><script type="application/javascript">var questionseBGImZxjOdij=[{"question": "What is the primary purpose of a ROS 2 interface definition?", "type": "many_choice", "answers": [{"answer": "To define the source code of a ROS 2 package.", "correct": false, "feedback": "Source code is defined in the package's source files, not in interface definitions."}, {"answer": "To declare package dependencies and metadata.", "correct": false, "feedback": "Package dependencies and metadata are declared in the `package.xml`, not in interface definitions."}, {"answer": "To specify the structure of ROS 2 messages, services, or actions.", "correct": true, "feedback": "Correct! ROS 2 interfaces define the structure of messages, services, or actions."}]}, {"question": "What is the benefit of using ROS 2 interfaces for message definitions?", "type": "many_choice", "answers": [{"answer": "They enable the execution of ROS 2 services.", "correct": false, "feedback": "ROS 2 interfaces are primarily used for messages, not services."}, {"answer": "They promote code reusability and consistency across ROS 2 nodes.", "correct": true, "feedback": "Correct! ROS 2 interfaces help maintain code consistency and reusability."}, {"answer": "They define hardware requirements for ROS 2 nodes.", "correct": false, "feedback": "Hardware requirements are typically not part of ROS 2 interfaces."}]}, {"question": "What is the benefit of using ROS 2 interfaces for message definitions?", "type": "many_choice", "answers": [{"answer": "They enable the execution of ROS 2 services.", "correct": false, "feedback": "ROS 2 interfaces are primarily used for messages, not services."}, {"answer": "They promote code reusability and consistency across ROS 2 nodes.", "correct": true, "feedback": "Correct! ROS 2 interfaces help maintain code consistency and reusability."}, {"answer": "They define hardware requirements for ROS 2 nodes.", "correct": false, "feedback": "Hardware requirements are typically not part of ROS 2 interfaces."}]}];
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -1467,8 +1468,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("hAxjfDKgRBQO")) {
-            show_questions(questionshAxjfDKgRBQO,  hAxjfDKgRBQO); 
+          if(document.getElementById("eBGImZxjOdij")) {
+            show_questions(questionseBGImZxjOdij,  eBGImZxjOdij); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1477,8 +1478,8 @@ if (typeof version == 'undefined') {
         {
         // console.log(element);
 
-        //console.log("hAxjfDKgRBQO");
-        // console.log(document.getElementById("hAxjfDKgRBQO"));
+        //console.log("eBGImZxjOdij");
+        // console.log(document.getElementById("eBGImZxjOdij"));
 
         try_show();
         }

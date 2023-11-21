@@ -33,6 +33,7 @@ parts:
       - file: vorlesung/Localisation
         sections:
         - file: vorlesung/Localisation/quizzes
+        - file: vorlesung/Localisation/markov
       - file: vorlesung/PathPlanning
         sections:
           - file: vorlesung/PathPlanning/quizzes

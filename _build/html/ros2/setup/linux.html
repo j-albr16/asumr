@@ -200,6 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vorlesung/Localisation.html">Localisation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../vorlesung/Localisation/quizzes.html">Quizzes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vorlesung/Localisation/markov.html">Markov Lokalisation</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../vorlesung/PathPlanning.html">Path Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -501,15 +502,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="linux">
+  <section id="linux">
 <h1>Linux<a class="headerlink" href="#linux" title="Permalink to this heading">#</a></h1>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="version">
+<section id="version">
 <h1>Version<a class="headerlink" href="#version" title="Permalink to this heading">#</a></h1>
 <p>Dies ist eine Installationsanleitung für ROS2 Iron für Ubuntu 22.04 LTS (Jammy)</p>
 <p>Diese Anleitung basiert auf der Offiziellen <a class="reference external" href="https://docs.ros.org/en/iron/Installation/Ubuntu-Install-Debians.html">Installationsanleitung von ROS2 Iron für Ubuntu</a></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="installation">
+<section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h1>
 <section id="setze-locales">
 <h2>Setze Locales<a class="headerlink" href="#setze-locales" title="Permalink to this heading">#</a></h2>
@@ -559,7 +560,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="uberprufung-der-installation">
+<section id="uberprufung-der-installation">
 <h1>Überprüfung der Installation<a class="headerlink" href="#uberprufung-der-installation" title="Permalink to this heading">#</a></h1>
 <p>In der 1. Terminal Instanz</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.<span class="w"> </span>/opt/ros/iron/setup.bash
@@ -572,7 +573,7 @@ ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_ccp<span class
 </pre></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="turtlesim">
+<section id="turtlesim">
 <h1>Turtlesim<a class="headerlink" href="#turtlesim" title="Permalink to this heading">#</a></h1>
 <section id="id1">
 <h2>Installation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
@@ -605,7 +606,7 @@ ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_ccp<span class
 <p>nun kann man die turtle mit den Pfeiltasten steuern</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="rqt">
+<section id="rqt">
 <h1>RQT<a class="headerlink" href="#rqt" title="Permalink to this heading">#</a></h1>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
 sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>~nros-iron-rqt*
