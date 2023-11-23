@@ -87,7 +87,7 @@ class TwoSegmentManipulator:
             
             delta_pos = new_pos - current_pos
             
-            if !delta_pos > 0:
+            if not delta_pos > 0:
                 self.theta[i] = theta_save
                 
             
