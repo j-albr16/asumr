@@ -22,26 +22,26 @@ Ziel der Aufgabe ist die erfolgreiche Implementation der Markov Lokalisation.
 
 Zur Aufgabe:
 
-Gegeben ist ein 1D Array der länge `len`, auf welchem sich ein Marker nach rechts, links oder gar nicht bewegen kann. Es kann nach jedem Schritt eine Messung durchgeführt werden.
+Gegeben ist ein 1D Array der länge `len`, auf welchem sich ein `Agent` nach rechts, links oder gar nicht bewegen kann. Es kann nach jedem Schritt eine Messung durchgeführt werden.
 
 \begin{align*}
-z \in \{wall, way\} \\
-x \in \mathbb{N}^{<len} \\
-u \in [-1, 0, 1]
+       z \in &\ \{wall, way\} \\
+       x \in &\  \mathbb{N}^{<len} \\
+       u \in &\ [-1, 0, 1]
 \end{align*}
 
 Folgendes sind die Wahrscheinlichkeiten für die Messwerte:
 
 \begin{align*}
-p(z='wall' | x=0) = 0.8 \\
-p(z='way' | x=0) = 0.2 \\
-p(z='wall' | x=len-1) = 0.8 \\
-p(z='way' | x=len-1) = 0.2 \\
-p(z='wall' | 0 < x < len-1) = 0.05 \\
-p(z='way' | 0 < x < len-1) = 0.95
+   &&\     p(z='wall' | x=0) &\ = 0.8 \\
+    &&\    p(z='way' | x=0) &\  = 0.2 \\
+    &&\    p(z='wall' | x=len-1) &\  = 0.8 \\
+   &&\     p(z='way' | x=len-1) &\  = 0.2 \\
+   &&\     p(z='wall' | 0 < x < len-1) &\  = 0.05 \\
+   &&\     p(z='way' | 0 < x < len-1) &\  = 0.95
 \end{align*}
 
-Folgendes sind die erlaubten Bewegungsmuster des Markers:
+Folgendes sind die erlaubten Bewegungsmuster des `Agent`s:
 
 - wenn er sich nicht am rand des Arrays befindet, kann er sich in jede Richtung `u` bewegen.
 - wenn er sich am linken Rand befindet und nach links geht, verändert er die Position nicht
@@ -50,23 +50,25 @@ Folgendes sind die erlaubten Bewegungsmuster des Markers:
 Dieser Mechanismus ist duch folgende Wahrscheinlichkeitsverteilungen gegeben:
 
 \begin{align*}
-p( x_t = x_{t-1} |  u_t = 0 , x_{t-1}) = 1 \\
+ &&\     p( x_t = x_{t-1} |  u_t = 0 , x_{t-1})  &\ = 1 \\
 
-p( x_t = x_{t-1} |  u_t = -1 , x_{t-1} = 0) = 1 \\
-p( x_t = x_{t-1} |  u_t = 1 , x_{t-1} = len-1) = 1 \\
+  &&\    p( x_t = x_{t-1} |  u_t = -1 , x_{t-1} = 0) &\  = 1 \\
+   &&\   p( x_t = x_{t-1} |  u_t = 1 , x_{t-1} = len-1) &\  = 1 \\
 
-p( x_t = x_{t-1}+1 |  u_t = 1 , x_{t-1} < len-1) = 1 \\
-p( x_t = x_{t-1}-1 |  u_t = -1 , x_{t-1} > 0) = 1 \\
+   &&\   p( x_t = x_{t-1}+1 |  u_t = 1 , x_{t-1} < len-1) &\  = 1 \\
+  &&\    p( x_t = x_{t-1}-1 |  u_t = -1 , x_{t-1} > 0) &\  = 1 \\
 
-sonst 0
 \end{align*}
 
-Implementieren Sie die Klasse `Markov`, die die Methoden `p_x, p_z, predict, update` und `__call__` besitzt. Die `__call__` Methode soll für die Anzahl an Schritten die geglaubte Wahrscheinlichkeitsverteilung `bel(x_t)` berechnen.
+Für alle verbleibenden Konfigurationen von $$x_t, u_t, x_{t-1}$$ ist die Wahrscheinlichkeit null.
+
+Implementieren Sie die Klasse `Agent`, die die Methoden `p_x, p_z, predict` und `update` besitzt. Die `update` Methode soll die geglaubte State Wahrscheinlichkeitsverteilen $b(x_t)` (`self.bel$) updaten. `self.bel` wird beim iterativen Aufruf von `Agent` verwendet um die Ergebnisse darzustellen.
 
 ```{code-cell} ipython3
 import numpy as np
 import random
 import matplotlib.pyplot as plt
+from scipy.interpolate import interp1d
 ```
 
 Folgendes ist das Environemnt, welches den Schritt entgegen nimmt und Sensordaten zurück gibt. Sie dürfen nicht auf die `_pos` Eigenschaft zugreifen.
@@ -100,7 +102,7 @@ class Environment:
 
 ```{code-cell} ipython3
 
-class Markov:
+class Agent:
 
     def __init__(self, env):
         self.env = env
@@ -133,66 +135,103 @@ class Markov:
         pass
 
     def predict(self, x_next, u) -> int:
+        """
+        Predicts the next belief state given the current belief state and the action
+
+        :param x_next: the next state
+        :param u: the action
+        """
         # your code here
         pass
 
     def update(self, z, predicted_bel):
+        """
+        Updates the belief state given the current belief state and the observation
+
+        :param z: the observation
+        :param predicted_bel: the predicted belief state
+        """
         # your code here
         pass
 
-    def __call__(self, steps=10, visualizer=None):
 
-        u = 0
-        for i in range(steps):
+    def __iter__(self):
+        self.steps = [0] + [random.choice(self.u)
+                            for _ in range(self.num_steps - 1)]
 
-            # your code here
+        self.i = 0
+        return self
 
-            if visualizer is not None:
-                visualizer(self.bel, self.env._pos)
+    def __next__(self):
+        if self.i < len(self.steps):
 
-            u = random.choice(self.u)
+            u = self.steps[self.i]
+            self.env.step(u)
+            predicted_bel = [self.predict(x, u) for x in self.x]
+            z = self.env.sense()
+            self.update(z, predicted_bel)
 
+            self.i += 1
+
+            return self.bel, self.env._pos
+        raise StopIteration
+
+    def __call__(self, num_steps=9):
+        self.num_steps = num_steps
+        return self
 ```
 
 ```{code-cell} ipython3
 :tags: ["hide-input"]
-class Visualizer:
+class AgentVizualizer:
 
-    def __init__(self, steps):
-        self.data = []
-        self.steps = steps
+    def __init__(self, agent, num_steps=9):
+        self.agent = agent
+        self.num_steps = num_steps
+        self.size = self.agent.env.size - 1
 
-    def __call__(self, bel, pos):
-        self.data.append((bel, pos))
+    def interpol_bel(self, bel):
+        x = np.linspace(0, self.size, len(bel))
+        y = bel
+        f = interp1d(x, y, kind='nearest', fill_value='extrapolate')
+        x_new = np.linspace(0, self.size, 100)
+        y_new = f(x_new)
+        return x_new, y_new
 
-    def plot(self):
-        fig, axs = plt.subplots(self.steps // 3, 3, figsize=(10, 10))
-        for i, ax in enumerate(axs.flatten()):
-            bel, pos = self.data[i]
-            ax.plot(bel)
+    def __call__(self, ):
+        fig, axs = plt.subplots(self.num_steps // 3, 3, figsize=(10, 10))
+
+        axs_flat = axs.flatten()
+        for i, (bel, pos) in enumerate(self.agent(self.num_steps)):
+            ax = axs_flat[i]
+
+            x, y = self.interpol_bel(bel)
             ax.scatter(pos, 0, color='red')
+            ax.plot(x, y, color='blue')
             ax.set_ylim(0, 1)
             ax.set_xlim(0, len(bel) - 1)
             ax.set_title(f'step {i}')
             ax.grid()
+
         plt.show()
+
 ```
 
 ```{code-cell} ipython3
 :tags: ["hide-input"]
 
 def main():
-    steps = 12
     env = Environment(6)
-    markov = Markov(env)
-    visualizer = Visualizer(steps)
-    markov(steps=steps, visualizer=visualizer)
-    visualizer.plot()
+    markov = Agent(env)
+    AgentVizualizer(markov, num_steps=9)()
 
 
 if __name__ == '__main__':
     main()
 ```
 
+Folgendes ist ein Beispielergebnis:
+
+![markov](markov-example.png)
 
 

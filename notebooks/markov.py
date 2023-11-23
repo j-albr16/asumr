@@ -1,6 +1,7 @@
 import numpy as np
 import random
 import matplotlib.pyplot as plt
+from scipy.interpolate import interp1d
 
 
 class Environment:
@@ -25,12 +26,12 @@ class Environment:
             return 'way'
 
 
-class Markov:
+class Agent:
 
     def __init__(self, env):
         self.env = env
         self.bel = [1 / env.size for _ in range(env.size)]
-        self.u = [1, 0, -1]
+        self.u = [1, -1]
         self.x = list(range(env.size))
         self.z = ['wall', 'way']
         self.last = env.size - 1
@@ -76,59 +77,88 @@ class Markov:
             return 0
 
     def predict(self, x_next, u):
+        """
+        Predicts the next belief state given the current belief state and the action
+
+        :param x_next: the next state
+        :param u: the action
+        """
         return sum([self.p_x(x_next, x, u) * self.bel[x] for x in self.x])
 
     def update(self, z, predicted_bel):
+        """
+        Updates the belief state given the current belief state and the observation
+
+        :param z: the observation
+        :param predicted_bel: the predicted belief state
+        """
         self.bel = [self.p_z(z, x) * predicted_bel[x] for x in self.x]
         nu = 1 / sum(self.bel)
         self.bel = [nu * b for b in self.bel]
 
-    def __call__(self, steps=10, visualizer=None):
+    def __iter__(self):
+        self.steps = [0] + [random.choice(self.u)
+                            for _ in range(self.num_steps - 1)]
 
-        u = 0
+        self.i = 0
+        return self
 
-        for i in range(steps):
+    def __next__(self):
+        if self.i < len(self.steps):
 
+            u = self.steps[self.i]
             self.env.step(u)
             predicted_bel = [self.predict(x, u) for x in self.x]
             z = self.env.sense()
             self.update(z, predicted_bel)
 
-            visualizer(self.bel, self.env._pos)
+            self.i += 1
 
-            u = random.choice(self.u)
+            return self.bel, self.env._pos
+        raise StopIteration
+
+    def __call__(self, num_steps=9):
+        self.num_steps = num_steps
+        return self
 
 
-class Visualizer:
+class AgentVizualizer:
 
-    def __init__(self, steps):
-        self.data = []
-        self.steps = steps
+    def __init__(self, agent, num_steps=9):
+        self.agent = agent
+        self.num_steps = num_steps
+        self.size = self.agent.env.size - 1
 
-    def __call__(self, bel, pos):
-        self.data.append((bel, pos))
+    def interpol_bel(self, bel):
+        x = np.linspace(0, self.size, len(bel))
+        y = bel
+        f = interp1d(x, y, kind='nearest', fill_value='extrapolate')
+        x_new = np.linspace(0, self.size, 100)
+        y_new = f(x_new)
+        return x_new, y_new
 
-    def plot(self):
-        fig, axs = plt.subplots(self.steps // 3, 3, figsize=(10, 10))
-        for i, ax in enumerate(axs.flatten()):
-            bel, pos = self.data[i]
-            ax.plot(bel)
+    def __call__(self, ):
+        fig, axs = plt.subplots(self.num_steps // 3, 3, figsize=(10, 10))
+
+        axs_flat = axs.flatten()
+        for i, (bel, pos) in enumerate(self.agent(self.num_steps)):
+            ax = axs_flat[i]
+
+            x, y = self.interpol_bel(bel)
             ax.scatter(pos, 0, color='red')
+            ax.plot(x, y, color='blue')
             ax.set_ylim(0, 1)
             ax.set_xlim(0, len(bel) - 1)
             ax.set_title(f'step {i}')
             ax.grid()
+
         plt.show()
 
 
 def main():
-    steps = 12
     env = Environment(6)
-    markov = Markov(env)
-    visualizer = Visualizer(steps)
-    # markov(steps=10)
-    markov(steps=steps, visualizer=visualizer)
-    visualizer.plot()
+    markov = Agent(env)
+    AgentVizualizer(markov, num_steps=9)()
 
 
 if __name__ == '__main__':
