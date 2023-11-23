@@ -189,6 +189,7 @@ class ThreeSegmentManipulator:
             # to the target
 
             # Move the self.theta[i] into that direction.
+        pass
     
     def visualize(self):
         # Create a figure and axis
