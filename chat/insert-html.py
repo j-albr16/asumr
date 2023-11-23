@@ -1,15 +1,30 @@
 import os
 
 
-INDEX_HTML_PATH = "_build/html/intro.html"
+HTML_PATH = "_build/html"
 INCLUDE_HTML_PATH = "chat/chat_button.html"
 MODAL_PATH = "chat/chat_modal.html"
 
 
-def main():
+def insert_html(html_path, include_html, modal_html):
+    with open(html_path, "r") as f:
+        html = f.read()
 
-    with open(INDEX_HTML_PATH, "r") as f:
-        index_html = f.read()
+    html = html.replace(
+        '<button onclick="toggleFullScreen()"',
+        include_html + '\n<button onclick="toggleFullScreen()"'
+    )
+
+    html = html.replace(
+        '</body>',
+        modal_html + '\n</body>'
+    )
+
+    with open(html_path, "w") as f:
+        f.write(html)
+
+
+def main():
 
     with open(INCLUDE_HTML_PATH, "r") as f:
         include_html = f.read()
@@ -17,18 +32,12 @@ def main():
     with open(MODAL_PATH, "r") as f:
         modal_html = f.read()
 
-    index_html = index_html.replace(
-        '<button onclick="toggleFullScreen()"',
-        include_html + '\n<button onclick="toggleFullScreen()"'
-    )
-
-    index_html = index_html.replace(
-        '</body>',
-        modal_html + '\n</body>'
-    )
-
-    with open(INDEX_HTML_PATH, "w") as f:
-        f.write(index_html)
+    # traverse folder and subfolders
+    for root, dirs, files in os.walk(HTML_PATH):
+        for file in files:
+            if file.endswith(".html"):
+                html_path = os.path.join(root, file)
+                insert_html(html_path, include_html, modal_html)
 
     # copy folder
     os.system("rm -rf _build/html/chat")
