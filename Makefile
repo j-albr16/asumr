@@ -1,11 +1,10 @@
-JB = jb
 
 clean:
 	rm -rf _build
-	jb clean .
+	jupyter-book clean .
 
-build: 
-	$(JB) build --all .;
+build:
+	jupyter-book build --all .;
 	make include
 
 
@@ -15,9 +14,8 @@ url:
 server:
 	python3 api/main.py
 
-pid: 
+pid:
 	sudo lsof -i :8000
 
 include: _build/html/intro.html chat/chat_button.html
 	python3 chat/insert-html.py
-
