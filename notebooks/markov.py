@@ -122,44 +122,37 @@ class Agent:
         return self
 
 
-class AgentVizualizer:
-
-    def __init__(self, agent, num_steps=9):
-        self.agent = agent
-        self.num_steps = num_steps
-        self.size = self.agent.env.size - 1
-
-    def interpol_bel(self, bel):
-        x = np.linspace(0, self.size, len(bel))
-        y = bel
-        f = interp1d(x, y, kind='nearest', fill_value='extrapolate')
-        x_new = np.linspace(0, self.size, 100)
-        y_new = f(x_new)
-        return x_new, y_new
-
-    def __call__(self, ):
-        fig, axs = plt.subplots(self.num_steps // 3, 3, figsize=(10, 10))
-
-        axs_flat = axs.flatten()
-        for i, (bel, pos) in enumerate(self.agent(self.num_steps)):
-            ax = axs_flat[i]
-
-            x, y = self.interpol_bel(bel)
-            ax.scatter(pos, 0, color='red')
-            ax.plot(x, y, color='blue')
-            ax.set_ylim(0, 1)
-            ax.set_xlim(0, len(bel) - 1)
-            ax.set_title(f'step {i}')
-            ax.grid()
-
-        plt.show()
+def interpol_bel(bel, size):
+    x = np.linspace(0, size, len(bel))
+    y = bel
+    f = interp1d(x, y, kind='nearest', fill_value='extrapolate')
+    x_new = np.linspace(0, size, 100)
+    y_new = f(x_new)
+    return x_new, y_new
 
 
-def main():
+def visualize():
     env = Environment(6)
-    markov = Agent(env)
-    AgentVizualizer(markov, num_steps=9)()
+    agent = Agent(env)
+    num_steps = 9
+    size = agent.env.size - 1
+
+    fig, axs = plt.subplots(num_steps // 3, 3, figsize=(10, 10))
+
+    axs_flat = axs.flatten()
+    for i, (bel, pos) in enumerate(agent(num_steps)):
+        ax = axs_flat[i]
+
+        x, y = interpol_bel(bel, size)
+        ax.scatter(pos, 0, color='red')
+        ax.plot(x, y, color='blue')
+        ax.set_ylim(0, 1)
+        ax.set_xlim(0, len(bel) - 1)
+        ax.set_title(f'step {i}')
+        ax.grid()
+
+    plt.show()
 
 
 if __name__ == '__main__':
-    main()
+    visualize()
