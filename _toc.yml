@@ -34,6 +34,7 @@ parts:
         sections:
         - file: vorlesung/Localisation/quizzes
         - file: vorlesung/Localisation/markov
+        - file: vorlesung/Localisation/mcl
       - file: vorlesung/PathPlanning
         sections:
           - file: vorlesung/PathPlanning/quizzes

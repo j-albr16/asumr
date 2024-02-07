@@ -1,7 +1,40 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Monte Carlo Localisation
+
+## Hintergrund
+
+Die Monte Carlo Lokalisierung (MCL) ist ein probabilistischer Ansatz zur Schätzung der Pose (Position und Orientierung) eines Roboters in seiner Umgebung. Hier eine kurze Beschreibung:
+
+- **Probabilistisches Framework**: MCL verwendet ein probabilistisches Framework, um die Position des Roboters zu schätzen. Es repräsentiert die Wahrscheinlichkeitsverteilung über möglichen Positionen des Roboters durch eine Menge von Partikeln (auch als Samples oder Partikel-Filter bezeichnet). Jeder Partikel stellt eine mögliche Pose des Roboters dar.
+
+- **Stichprobenbasiertes Verfahren**: MCL verwendet eine stichprobenbasierte Methode, bei der Partikel zufällig aus dem Pose-Raum des Roboters gezogen werden. Diese Partikel werden dann anhand von Sensorinformationen aktualisiert, um die tatsächliche Pose des Roboters besser anzunähern.
+
+- **Resampling**: Nach der Aktualisierung der Partikel werden sie entsprechend ihrer Gewichtungen neu abgetastet. Partikel mit höheren Gewichtungen haben eine größere Wahrscheinlichkeit, ausgewählt zu werden, während Partikel mit niedrigeren Gewichtungen mit geringerer Wahrscheinlichkeit ausgewählt werden. Dieser Resampling-Schritt konzentriert die Partikel auf Bereiche, die mit den Sensorinformationen besser übereinstimmen, und verbessert so die Genauigkeit der Lokalisierung.
+
+- **Sensorfusion**: MCL integriert Daten aus verschiedenen Sensoren wie Odometrie, Laser-Entfernungsmesser oder Kameras, um die Pose des Roboters zu schätzen. Durch die Kombination von Informationen aus verschiedenen Sensoren reduziert MCL Unsicherheiten und verbessert die Genauigkeit der Lokalisierung, selbst in komplexen Umgebungen mit Hindernissen oder Unsicherheiten.
+
+Insgesamt ist MCL eine leistungsstarke Methode zur Lokalisierung von Robotern, die in Echtzeit arbeitet und es Robotern ermöglicht, sich in dynamischen Umgebungen zuverlässig zu lokalisieren und zu navigieren.
+
+## Aufgabe
+
+
+```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
+```
 
-
+```{code-cell} ipython3
 class MonteCarloLocalization:
     def __init__(self, num_particles, map_):
         self.num_particles = num_particles
@@ -86,6 +119,10 @@ class MonteCarloLocalization:
         self.resample()
         self.redistribute()
 
+```
+
+```{code-cell} ipython3
+:tags: ["hide-input"]
 
 class Map:
     def __init__(self, world_size, view_radius, num_landmarks):
@@ -182,4 +219,5 @@ def visualize():
 if __name__ == "__main__":
     visualize()
 
+```
 
