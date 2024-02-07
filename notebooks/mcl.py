@@ -5,15 +5,34 @@ import matplotlib.pyplot as plt
 class MonteCarloLocalization:
     def __init__(self, num_particles, map_):
         self.num_particles = num_particles
+        self.new_particles = num_particles // 10
         self.map = map_
         self.world_size = map_.world_size
-        self.particles = np.random.uniform(0, self.world_size, size=(num_particles, 2))
-        self.weights = np.ones(num_particles) / num_particles
+        self.particles, self.orientations, self.weights = self._init_particles(num_particles)
+
+    def _init_particles(self, num_particles):
+        particles = np.random.uniform(0, self.world_size, size=(num_particles, 2))
+        weights = np.ones(num_particles) / num_particles
+        orientations = np.random.uniform(0, 2 * np.pi, size=num_particles)
+        return particles, orientations, weights
+
+    def get_estimated_position(self):
+        """
+        returns the estimated position of the agent
+        """
+        return np.median(self.particles, axis=0)
 
     def move(self, motion):
-        dx, dy = motion
-        self.particles[:, 0] = (self.particles[:, 0] + dx) % self.world_size
-        self.particles[:, 1] = (self.particles[:, 1] + dy) % self.world_size
+        """
+        :param motion: (step_size, angle) tuple
+        """
+        step_size, angle = motion
+        self.orientations = self.orientations + angle
+        self.orientations %= 2 * np.pi
+        dx = step_size * np.cos(self.orientations)
+        dy = step_size * np.sin(self.orientations)
+        self.particles += np.column_stack((dx, dy))
+        self.particles %= self.world_size
 
     def _particle_distance(self, particle, measurement):
         """
@@ -27,14 +46,27 @@ class MonteCarloLocalization:
     def _normalize(self, weights):
         return weights / np.sum(weights)
 
+    def redistribute(self):
+        """
+        redistribute some particles to the unexplored areas
+        """
+        # delete the particles with the lowest weights
+        indices = np.argsort(self.weights)
+        self.particles = np.delete(self.particles, indices[:self.new_particles], axis=0)
+        self.orientations = np.delete(self.orientations, indices[:self.new_particles])
+        self.weights = np.delete(self.weights, indices[:self.new_particles])
+
+        # find the unexplored areas
+        new_particles, new_orientations, new_weights = self._init_particles(self.new_particles)
+        self.particles = np.vstack((self.particles, new_particles))
+        self.orientations = np.hstack((self.orientations, new_orientations))
+        self.weights = np.hstack((self.weights, new_weights))
+
     def sense(self, measurement):
         for i in range(self.num_particles):
             particle = self.particles[i]
             distance = self._particle_distance(particle, measurement)
             self.weights[i] *= self._measurement_prob(distance)
-
-            if np.isnan(self.weights[i]):
-                self.weights[i] = 0
 
         self.weights = self._normalize(self.weights)
 
@@ -52,6 +84,7 @@ class MonteCarloLocalization:
         self.move(motion)
         self.sense(measurement)
         self.resample()
+        self.redistribute()
 
 
 class Map:
@@ -79,10 +112,15 @@ class Agent:
 
     def __init__(self, world_size):
         self.pos = np.random.uniform(0, world_size, size=2)
+        self.orientation = np.random.uniform(0, 2 * np.pi)
         self.world_size = world_size
 
-    def move(self, dx, dy):
-        self.pos = (self.pos + np.array([dx, dy])) % self.world_size
+    def move(self, step_size, angle):
+        self.orientation += angle
+        self.orientation %= 2 * np.pi
+        self.pos += np.array([step_size * np.cos(self.orientation),
+                             step_size * np.sin(self.orientation)])
+        self.pos %= self.world_size
 
     def sense(self, map_):
         return map_.sense(self.pos)
@@ -95,10 +133,10 @@ def simulate(steps, map_, num_particles=1000):
     mc_localization = MonteCarloLocalization(num_particles, map_)
 
     for _ in range(steps):
-        agent.move(1, 1)
+        agent.move(3, 0.01)
         measurement = agent.sense(map_)
-        mc_localization.localize((1, 1), measurement)
-        estimated_position = np.mean(mc_localization.particles, axis=0)
+        mc_localization.localize((3, 0.01), measurement)
+        estimated_position = mc_localization.get_estimated_position()
         yield agent.pos, mc_localization.particles, estimated_position
 
     print(f"Estimated position: {estimated_position}")
@@ -107,7 +145,7 @@ def simulate(steps, map_, num_particles=1000):
 
 def visualize():
     # simulation config
-    view_radius = 10
+    view_radius = 40
     world_size = 100
     num_landmarks = 10
     steps = 30
