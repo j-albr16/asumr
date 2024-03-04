@@ -174,10 +174,13 @@ class MapGenerator:
     Generates a 2D numpy array with a random map
     """
 
-    def __init__(self, dim=10, max_tunnels=20, max_length=9):
+    def __init__(self, dim=10, max_tunnels=20, max_length=9, floor=0, wall=np.inf, width=1):
         self.dim = dim
         self.max_tunnels = max_tunnels
         self.max_length = max_length
+        self.floor = floor
+        self.wall = wall
+        self.width = width
 
     def _get_random_position(self):
         return (random.randint(0, self.dim - 1),
@@ -223,7 +226,14 @@ class MapGenerator:
                 if validator.hits_wall(random_direction, (current_row, current_column)):
                     break
 
-                self.map[current_row][current_column] = 0
+                self.map[current_row][current_column] = self.floor
+
+                # apply width
+                for i in range(1, self.width + 1):
+                    if current_row + i < self.dim and current_column + i < self.dim:
+                        self.map[current_row + i][current_column] = self.floor
+                        self.map[current_row][current_column + i] = self.floor
+
                 current_row += random_direction[0]
                 current_column += random_direction[1]
                 tunnel_length += 1
@@ -236,7 +246,7 @@ class MapGenerator:
                 random_direction = random.choice(validator.directions)
 
     def _init_map(self):
-        return np.full((self.dim, self.dim), np.inf)
+        return np.full((self.dim, self.dim), self.wall)
 
     def __call__(self):
         """
@@ -368,10 +378,10 @@ def main():
     # dataset = MapDataset(solver=MapSolver)
     # MapViewer(dataset)()
 
-    dataset = MapDataset(load=True)
+    dataset = MapDataset(load=False)
     MapViewer(dataset)()
 
-    dataset = MapDataset(solver=None)
+    dataset = MapDataset(solver=True)
     MapViewer(dataset)()
 
 
