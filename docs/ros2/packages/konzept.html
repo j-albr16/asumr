@@ -65,8 +65,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ros2/packages/konzept';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Erstelle ein Package" href="create.html" />
-    <link rel="prev" title="Packages" href="../packages.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -212,15 +210,14 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">ROS 2</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../setup.html">Setup</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../setup/linux.html">Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/windows.html">Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup/vm.html">VM</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../packages.html">Packages</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Konzept</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../packages.html">Pakete</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="create.html">Erstelle ein Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="launch.html">Launch Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quiz.html">Quiz</a></li>
@@ -428,6 +425,28 @@ const thebe_selector_output = ".output, .cell_output"
 <!-- <script src="chat/chat.js"></script> -->
 
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-sm btn-fullscreen-button" data-bs-toggle="modal" data-bs-target="#chatModal">
+<span class="btn__icon-container m-auto" id="chat_button_icon">
+    <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28"><path fill="currentColor" d="M160-360q-50 0-85-35t-35-85q0-50 35-85t85-35v-80q0-33 23.5-56.5T240-760h120q0-50 35-85t85-35q50 0 85 35t35 85h120q33 0 56.5 23.5T800-680v80q50 0 85 35t35 85q0 50-35 85t-85 35v160q0 33-23.5 56.5T720-120H240q-33 0-56.5-23.5T160-200v-160Zm200-80q25 0 42.5-17.5T420-500q0-25-17.5-42.5T360-560q-25 0-42.5 17.5T300-500q0 25 17.5 42.5T360-440Zm240 0q25 0 42.5-17.5T660-500q0-25-17.5-42.5T600-560q-25 0-42.5 17.5T540-500q0 25 17.5 42.5T600-440ZM320-280h320v-80H320v80Zm-80 80h480v-480H240v480Zm240-240Z"/></svg>
+    </span>
+</button>
+
+
+<!-- <script src="chat/chat.js"></script> -->
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-sm btn-fullscreen-button" data-bs-toggle="modal" data-bs-target="#chatModal">
+<span class="btn__icon-container m-auto" id="chat_button_icon">
+    <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28"><path fill="currentColor" d="M160-360q-50 0-85-35t-35-85q0-50 35-85t85-35v-80q0-33 23.5-56.5T240-760h120q0-50 35-85t85-35q50 0 85 35t35 85h120q33 0 56.5 23.5T800-680v80q50 0 85 35t35 85q0 50-35 85t-85 35v160q0 33-23.5 56.5T720-120H240q-33 0-56.5-23.5T160-200v-160Zm200-80q25 0 42.5-17.5T420-500q0-25-17.5-42.5T360-560q-25 0-42.5 17.5T300-500q0 25 17.5 42.5T360-440Zm240 0q25 0 42.5-17.5T660-500q0-25-17.5-42.5T600-560q-25 0-42.5 17.5T540-500q0 25 17.5 42.5T600-440ZM320-280h320v-80H320v80Zm-80 80h480v-480H240v480Zm240-240Z"/></svg>
+    </span>
+</button>
+
+
+<!-- <script src="chat/chat.js"></script> -->
+
+
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
   title="Fullscreen mode"
@@ -561,24 +580,6 @@ mkdir<span class="w"> </span>~/ros2_ws/src
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../packages.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Packages</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="create.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Erstelle ein Package</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -649,6 +650,64 @@ By Florian Bohlken und Jan Albrecht
   <footer class="bd-footer">
   </footer>
   <!-- Modal -->
+<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content h-100">
+      <div class="modal-header bg-info text-white align-items-center p-3 border-bottom-0">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">ASUMR Chat Bot</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-2 bg-grey">
+        <section style="background-color: #eee;" class="h-100">
+          <div class="container h-100">
+            <div class="d-flex flex-column h-100">
+                <div id="chatMessages" class="flex-grow-1 overflow-scroll">
+                </div>
+                <form id="chatForm" class="flex-shrink-1">
+                    <textarea class="form-control" id="chatInput" rows="4" placeholder="hast du eine Frage?"></textarea>
+                    <input type="submit" hidden/>
+                </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/chat/chat.js">
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content h-100">
+      <div class="modal-header bg-info text-white align-items-center p-3 border-bottom-0">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">ASUMR Chat Bot</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-2 bg-grey">
+        <section style="background-color: #eee;" class="h-100">
+          <div class="container h-100">
+            <div class="d-flex flex-column h-100">
+                <div id="chatMessages" class="flex-grow-1 overflow-scroll">
+                </div>
+                <form id="chatForm" class="flex-shrink-1">
+                    <textarea class="form-control" id="chatInput" rows="4" placeholder="hast du eine Frage?"></textarea>
+                    <input type="submit" hidden/>
+                </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/chat/chat.js">
+</script>
+
+<!-- Modal -->
 <div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content h-100">

@@ -47,8 +47,7 @@ parts:
         - file: ros2/setup/windows
         - file: ros2/setup/vm
       - file: ros2/packages
-        sections: 
-        - file: ros2/packages/konzept
+        sections:
         - file: ros2/packages/create.md
         - file: ros2/packages/launch.md
         - file: ros2/packages/quiz.md
