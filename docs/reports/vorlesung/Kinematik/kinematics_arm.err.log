@@ -1,0 +1,50 @@
+Traceback (most recent call last):
+  File "/home/scrutycs/uni/5-Semester/ASUMR/asumr/venv/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/scrutycs/uni/5-Semester/ASUMR/asumr/venv/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/scrutycs/uni/5-Semester/ASUMR/asumr/venv/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/scrutycs/uni/5-Semester/ASUMR/asumr/venv/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/home/scrutycs/uni/5-Semester/ASUMR/asumr/venv/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/scrutycs/uni/5-Semester/ASUMR/asumr/venv/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from numpy.testing import assert_almost_equal
+
+def test_inverse_kinematics():
+    manipulator = TwoSegmentManipulator()
+    assert np.allclose(manipulator.inverse_kinematics(np.array([2, 0])), np.array([0., 0.]), atol=0.01)
+    assert np.allclose(manipulator.inverse_kinematics(np.array([0, 2])), np.array([1.57, 0.]), atol=0.01)
+    assert np.allclose(manipulator.inverse_kinematics(np.array([-2, 0])), np.array([3.14, 0.]), atol=0.01)
+    assert np.allclose(manipulator.inverse_kinematics(np.array([1.4142, 1.4142])), np.array([0.785, 0.]), atol=0.01)
+    assert np.allclose(manipulator.inverse_kinematics(np.array([-1.4142, -1.4142])), np.array([-2.356, 0.]), atol=0.01)
+    # Why might these be problematic? What would be a better alternative?
+    assert np.allclose(manipulator.inverse_kinematics(np.array([1., 1.])), np.array([0., 1.571]), atol=0.01)
+    assert np.allclose(manipulator.inverse_kinematics(np.array([-1., -1.])), np.array([-3.142, 1.571]), atol=0.01)
+
+test_inverse_kinematics()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAssertionError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[4], line 14[0m
+[1;32m     11[0m     [38;5;28;01massert[39;00m np[38;5;241m.[39mallclose(manipulator[38;5;241m.[39minverse_kinematics(np[38;5;241m.[39marray([[38;5;241m1.[39m, [38;5;241m1.[39m])), np[38;5;241m.[39marray([[38;5;241m0.[39m, [38;5;241m1.571[39m]), atol[38;5;241m=[39m[38;5;241m0.01[39m)
+[1;32m     12[0m     [38;5;28;01massert[39;00m np[38;5;241m.[39mallclose(manipulator[38;5;241m.[39minverse_kinematics(np[38;5;241m.[39marray([[38;5;241m-[39m[38;5;241m1.[39m, [38;5;241m-[39m[38;5;241m1.[39m])), np[38;5;241m.[39marray([[38;5;241m-[39m[38;5;241m3.142[39m, [38;5;241m1.571[39m]), atol[38;5;241m=[39m[38;5;241m0.01[39m)
+[0;32m---> 14[0m [43mtest_inverse_kinematics[49m[43m([49m[43m)[49m
+
+Cell [0;32mIn[4], line 6[0m, in [0;36mtest_inverse_kinematics[0;34m()[0m
+[1;32m      4[0m manipulator [38;5;241m=[39m TwoSegmentManipulator()
+[1;32m      5[0m [38;5;28;01massert[39;00m np[38;5;241m.[39mallclose(manipulator[38;5;241m.[39minverse_kinematics(np[38;5;241m.[39marray([[38;5;241m2[39m, [38;5;241m0[39m])), np[38;5;241m.[39marray([[38;5;241m0.[39m, [38;5;241m0.[39m]), atol[38;5;241m=[39m[38;5;241m0.01[39m)
+[0;32m----> 6[0m [38;5;28;01massert[39;00m np[38;5;241m.[39mallclose(manipulator[38;5;241m.[39minverse_kinematics(np[38;5;241m.[39marray([[38;5;241m0[39m, [38;5;241m2[39m])), np[38;5;241m.[39marray([[38;5;241m1.57[39m, [38;5;241m0.[39m]), atol[38;5;241m=[39m[38;5;241m0.01[39m)
+[1;32m      7[0m [38;5;28;01massert[39;00m np[38;5;241m.[39mallclose(manipulator[38;5;241m.[39minverse_kinematics(np[38;5;241m.[39marray([[38;5;241m-[39m[38;5;241m2[39m, [38;5;241m0[39m])), np[38;5;241m.[39marray([[38;5;241m3.14[39m, [38;5;241m0.[39m]), atol[38;5;241m=[39m[38;5;241m0.01[39m)
+[1;32m      8[0m [38;5;28;01massert[39;00m np[38;5;241m.[39mallclose(manipulator[38;5;241m.[39minverse_kinematics(np[38;5;241m.[39marray([[38;5;241m1.4142[39m, [38;5;241m1.4142[39m])), np[38;5;241m.[39marray([[38;5;241m0.785[39m, [38;5;241m0.[39m]), atol[38;5;241m=[39m[38;5;241m0.01[39m)
+
+[0;31mAssertionError[0m: 
+

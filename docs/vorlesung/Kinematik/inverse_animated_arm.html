@@ -1,0 +1,961 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Inverse Kinematik &#8212; ASUMR jupyter book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"9eeae04c456b47eeadefd0490afcee72": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1db8b38a549d459bafe46973ca9c2a6f": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "button_color": null, "font_family": null, "font_size": null, "font_style": null, "font_variant": null, "font_weight": null, "text_color": null, "text_decoration": null}}, "fc35552caa1445f9909e092473906b08": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ButtonView", "button_style": "", "description": "Run Animation", "disabled": false, "icon": "", "layout": "IPY_MODEL_9eeae04c456b47eeadefd0490afcee72", "style": "IPY_MODEL_1db8b38a549d459bafe46973ca9c2a6f", "tabbable": null, "tooltip": null}}, "9014a40c1abf438eb128794f232baabc": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "673442661f074aefb8f06d1f327ac8a3": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_fc35552caa1445f9909e092473906b08"], "layout": "IPY_MODEL_9014a40c1abf438eb128794f232baabc", "tabbable": null, "tooltip": null}}, "3397d15ee7c04334a1d0373843aa85ac": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "74ae4142648643d2bcb2c69c72d92b57": {"model_name": "MPLCanvasModel", "model_module": "jupyter-matplotlib", "model_module_version": "^0.11", "state": {"_cursor": "pointer", "_data_url": "data:image/png;base64,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6NEj+vXrF7NmzYqtW7fGT3/604iIuOWWW6J///7x2c9+Nt5///2444474rHHHov//d//baslAABHsLwMrOeffz5Gjx6duz99+vSIiLj88stj8eLFsW3btti8eXPu67t27YoZM2bE1q1bo1u3bnHyySfHo48+2uB7AACkUpBlWdbWQ+SD2traKC4ujpqamigqKmrrcQAgb7TH19B2+yF3AICWIrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJBYXgbWE088EV/60peiT58+UVBQEEuXLv3IY1asWBGnnHJKFBYWxoknnhiLFy9u8TkBgPYpLwNr586dMWTIkFi4cGGT9t+0aVOcd955MXr06KisrIxp06bF17/+9fjtb3/bwpMCAO3RUW09wME455xz4pxzzmny/osWLYr+/fvHzTffHBERn/70p+PJJ5+MBQsWxNixY1tqTACgncrLK1jNVVFREWPGjGmwbezYsVFRUdFGEwEAR7K8vILVXFVVVVFSUtJgW0lJSdTW1sZ7770XXbt23eeYurq6qKury92vra1t8TkBgCNDu7iCdTDmzZsXxcXFuVvfvn3beiQAIE+0i8AqLS2N6urqBtuqq6ujqKhov1evIiJmzZoVNTU1uduWLVtaY1QA4AjQLt4iLC8vj4cffrjBtmXLlkV5eXmjxxQWFkZhYWFLjwYAHIHy8grWjh07orKyMiorKyNi769hqKysjM2bN0fE3qtPEyZMyO1/1VVXxR//+Me4/vrrY/369fHjH/84fvnLX8a1117bFuMDAEe4vAys559/PoYNGxbDhg2LiIjp06fHsGHDYvbs2RERsW3btlxsRUT0798/fvOb38SyZctiyJAhcfPNN8cdd9zhVzQAAC2iIMuyrK2HyAe1tbVRXFwcNTU1UVRU1NbjAEDeaI+voXl5BQsA4HAm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4omIc89t6ynaVN5+yP20006LW2+9NSL2fsi9X79+MXXq1EY/5P7uu+/Ggw8+mNs2cuTIOPnkk33IHfJUff3eH07aunX/H/MoKIg49tiITZt8Bisf1O+qj+pux0dp/dboEPue0D1RENs6Hhul727yGax88KEnaHv8kHtevkU4ffr0+I//+I+4++67Y926dXH11VfHzp0744orroiIiAkTJjT4EPw111wTjzzySNx8882xfv36+Nd//dd4/vnnY+rUqW21BOAQdewY8X//794/f/BTgx/44P4tt4irfNGxc8fYPH3vCf3gpwY/8MH9LdNvEVf54kBP0HYiLwPr4osvjvnz58fs2bNj6NChUVlZGY888kjug+ybN2+ObX/zAY2RI0fGPffcE7fffnsMGTIkfvWrX8XSpUvjpJNOaqslAAlccMHeX8XwyU823H7ssX5FQz46/cYL4tnrfhVVHRue0G0dj/UrGvJRY0/QdiIv3yJsC94ihMPXB78oetu2vZ/N+vu/d+Uqn9Xvqo+Xfvy7ePeVbdHthLIY/M9/78pVPquvj9pHHonif/iHdvUaKrCaSGABwMFpj6+hefkWIQDA4UxgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGJ5F1hvv/12XHbZZVFUVBTdu3ePSZMmxY4dOw54zKhRo6KgoKDB7aqrrmqliQGA9uaoth6guS677LLYtm1bLFu2LHbv3h1XXHFFXHnllXHPPfcc8LjJkyfHd7/73dz9bt26tfSoAEA7lVeBtW7dunjkkUfiueeei1NPPTUiIm699dY499xzY/78+dGnT59Gj+3WrVuUlpa21qgAQDuWV28RVlRURPfu3XNxFRExZsyY6NChQ6xateqAx/7sZz+Lnj17xkknnRSzZs2Kd999t6XHBQDaqby6glVVVRW9e/dusO2oo46KHj16RFVVVaPHffWrX43jjjsu+vTpEy+++GJ8+9vfjg0bNsSSJUsaPaauri7q6upy92traw99AQBAu3BYBNbMmTPjhhtuOOA+69atO+jvf+WVV+b+PHjw4CgrK4uzzjorXnnllTjhhBP2e8y8efNi7ty5B/2YAED7dVgE1owZM2LixIkH3GfAgAFRWloab775ZoPtf/3rX+Ptt99u1uerRowYERERGzdubDSwZs2aFdOnT8/dr62tjb59+zb5MQCA9uuwCKxevXpFr169PnK/8vLy2L59e6xevTqGDx8eERGPPfZY7NmzJxdNTVFZWRkREWVlZY3uU1hYGIWFhU3+ngAAH8irD7l/+tOfjnHjxsXkyZPj2WefjaeeeiqmTp0al1xySe4nCLdu3RqDBg2KZ599NiIiXnnllfje974Xq1evjldffTV+/etfx4QJE+KMM86Ik08+uS2XAwAcofIqsCL2/jTgoEGD4qyzzopzzz03vvCFL8Ttt9+e+/ru3btjw4YNuZ8S7Ny5czz66KNx9tlnx6BBg2LGjBlx4YUXxoMPPthWSwAAjnAFWZZlbT1EPqitrY3i4uKoqamJoqKith4HAPJGe3wNzbsrWAAAhzuBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxPIusL7//e/HyJEjo1u3btG9e/cmHZNlWcyePTvKysqia9euMWbMmPjDH/7QsoMCAO1W3gXWrl274qKLLoqrr766ycfceOON8cMf/jAWLVoUq1atio997GMxduzYeP/991twUgCgvSrIsixr6yEOxuLFi2PatGmxffv2A+6XZVn06dMnZsyYEd/61rciIqKmpiZKSkpi8eLFcckllzTp8Wpra6O4uDhqamqiqKjoUMcHgHajPb6G5t0VrObatGlTVFVVxZgxY3LbiouLY8SIEVFRUdGGkwEAR6qj2nqAllZVVRURESUlJQ22l5SU5L62P3V1dVFXV5e7X1tb2zIDAgBHnMPiCtbMmTOjoKDggLf169e36kzz5s2L4uLi3K1v376t+vgAQP46LK5gzZgxIyZOnHjAfQYMGHBQ37u0tDQiIqqrq6OsrCy3vbq6OoYOHdrocbNmzYrp06fn7tfW1oosAKBJDovA6tWrV/Tq1atFvnf//v2jtLQ0li9fnguq2traWLVq1QF/ErGwsDAKCwtbZCYA4Mh2WLxF2BybN2+OysrK2Lx5c9TX10dlZWVUVlbGjh07cvsMGjQo7r///oiIKCgoiGnTpsW//du/xa9//et46aWXYsKECdGnT58YP358G60CADiSHRZXsJpj9uzZcffdd+fuDxs2LCIiHn/88Rg1alRERGzYsCFqampy+1x//fWxc+fOuPLKK2P79u3xhS98IR555JHo0qVLq84OALQPeft7sFpbe/wdHgCQQnt8Dc27twgBAA53AgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAInlXWB9//vfj5EjR0a3bt2ie/fuTTpm4sSJUVBQ0OA2bty4lh0UAGi3jmrrAZpr165dcdFFF0V5eXn853/+Z5OPGzduXNx11125+4WFhS0xHgBA/gXW3LlzIyJi8eLFzTqusLAwSktLW2AiAICG8u4twoO1YsWK6N27dwwcODCuvvrqeOuttw64f11dXdTW1ja4AQA0RbsIrHHjxsVPf/rTWL58edxwww2xcuXKOOecc6K+vr7RY+bNmxfFxcW5W9++fVtxYgAgnx0WgTVz5sx9PoT+4dv69esP+vtfcskl8eUvfzkGDx4c48ePj4ceeiiee+65WLFiRaPHzJo1K2pqanK3LVu2HPTjAwDty2HxGawZM2bExIkTD7jPgAEDkj3egAEDomfPnrFx48Y466yz9rtPYWGhD8IDAAflsAisXr16Ra9evVrt8V5//fV46623oqysrNUeEwBoPw6LtwibY/PmzVFZWRmbN2+O+vr6qKysjMrKytixY0dun0GDBsX9998fERE7duyI6667Lp555pl49dVXY/ny5XH++efHiSeeGGPHjm2rZQAAR7DD4gpWc8yePTvuvvvu3P1hw4ZFRMTjjz8eo0aNioiIDRs2RE1NTUREdOzYMV588cW4++67Y/v27dGnT584++yz43vf+563AAGAFlGQZVnW1kPkg9ra2iguLo6ampooKipq63EAIG+0x9fQvHuLEADgcCewAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQmMACAEhMYAEAJCawAAASE1gAAIkJLACAxAQWAEBiAgsAIDGBBQCQWF4F1quvvhqTJk2K/v37R9euXeOEE06IOXPmxK5duw543Pvvvx9TpkyJT3ziE3H00UfHhRdeGNXV1a00NQDQ3uRVYK1fvz727NkTt912W6xduzYWLFgQixYtiu985zsHPO7aa6+NBx98MO67775YuXJlvPHGG3HBBRe00tQAQHtTkGVZ1tZDHIqbbropfvKTn8Qf//jH/X69pqYmevXqFffcc0985StfiYi9ofbpT386Kioq4vTTT2/S49TW1kZxcXHU1NREUVFRsvkB4EjXHl9Dj2rrAQ5VTU1N9OjRo9Gvr169Onbv3h1jxozJbRs0aFD069fvgIFVV1cXdXV1DR4nYu9fEgCg6T547czzazrNkteBtXHjxrj11ltj/vz5je5TVVUVnTt3ju7duzfYXlJSElVVVY0eN2/evJg7d+4+2/v27XvQ8wJAe/bWW29FcXFxW4/RKg6LwJo5c2bccMMNB9xn3bp1MWjQoNz9rVu3xrhx4+Kiiy6KyZMnJ59p1qxZMX369Nz97du3x3HHHRebN28+ov9y1NbWRt++fWPLli1H9GVc6zzytJe1WueRpb2ss6amJvr163fAd5yONIdFYM2YMSMmTpx4wH0GDBiQ+/Mbb7wRo0ePjpEjR8btt99+wONKS0tj165dsX379gZXsaqrq6O0tLTR4woLC6OwsHCf7cXFxUf0k+ADRUVF1nkEaS/rjGg/a7XOI0t7WWeHDnn1s3WH5LAIrF69ekWvXr2atO/WrVtj9OjRMXz48Ljrrrs+8mQNHz48OnXqFMuXL48LL7wwIiI2bNgQmzdvjvLy8kOeHQDgw/IqJbdu3RqjRo2Kfv36xfz58+NPf/pTVFVVNfgs1datW2PQoEHx7LPPRsTeK06TJk2K6dOnx+OPPx6rV6+OK664IsrLy5v8E4QAAM1xWFzBaqply5bFxo0bY+PGjXHsscc2+NoHP5mwe/fu2LBhQ7z77ru5ry1YsCA6dOgQF154YdTV1cXYsWPjxz/+cbMeu7CwMObMmbPftw2PJNZ5ZGkv64xoP2u1ziOLdR658v73YAEAHG7y6i1CAIB8ILAAABITWAAAiQksAIDEBFYjXn311Zg0aVL0798/unbtGieccELMmTMndu3adcDj3n///ZgyZUp84hOfiKOPPjouvPDCqK6ubqWpD873v//9GDlyZHTr1m2ff1KoMRMnToyCgoIGt3HjxrXsoIfoYNaZZVnMnj07ysrKomvXrjFmzJj4wx/+0LKDHqK33347LrvssigqKoru3bvHpEmTYseOHQc8ZtSoUfucz6uuuqqVJm6ahQsXxvHHHx9dunSJESNG5H4VS2Puu+++GDRoUHTp0iUGDx4cDz/8cCtNeuias9bFixfvc+66dOnSitM23xNPPBFf+tKXok+fPlFQUBBLly79yGNWrFgRp5xyShQWFsaJJ54YixcvbvE5D1Vz17lixYp9zmVBQcEB/1m3w8G8efPic5/7XBxzzDHRu3fvGD9+fGzYsOEjj8vn52hTCKxGrF+/Pvbs2RO33XZbrF27NhYsWBCLFi2K73znOwc87tprr40HH3ww7rvvvli5cmW88cYbccEFF7TS1Adn165dcdFFF8XVV1/drOPGjRsX27Zty91+/vOft9CEaRzMOm+88cb44Q9/GIsWLYpVq1bFxz72sRg7dmy8//77LTjpobnsssti7dq1sWzZsnjooYfiiSeeiCuvvPIjj5s8eXKD83njjTe2wrRNc++998b06dNjzpw58cILL8SQIUNi7Nix8eabb+53/6effjouvfTSmDRpUqxZsybGjx8f48ePj5dffrmVJ2++5q41Yu9vAf/bc/faa6+14sTNt3PnzhgyZEgsXLiwSftv2rQpzjvvvBg9enRUVlbGtGnT4utf/3r89re/beFJD01z1/mBDRs2NDifvXv3bqEJ01i5cmVMmTIlnnnmmVi2bFns3r07zj777Ni5c2ejx+Tzc7TJMprsxhtvzPr379/o17dv35516tQpu++++3Lb1q1bl0VEVlFR0RojHpK77rorKy4ubtK+l19+eXb++ee36Dwtpanr3LNnT1ZaWprddNNNuW3bt2/PCgsLs5///OctOOHB+/3vf59FRPbcc8/ltv3P//xPVlBQkG3durXR484888zsmmuuaYUJD85pp52WTZkyJXe/vr4+69OnTzZv3rz97v9P//RP2Xnnnddg24gRI7JvfOMbLTpnCs1da3Oet4ejiMjuv//+A+5z/fXXZ5/97GcbbLv44ouzsWPHtuBkaTVlnY8//ngWEdlf/vKXVpmppbz55ptZRGQrV65sdJ98fo42lStYzVBTU3PAf6hy9erVsXv37hgzZkxu26BBg6Jfv35RUVHRGiO2qhUrVkTv3r1j4MCBcfXVV8dbb73V1iMltWnTpqiqqmpwPouLi2PEiBGH7fmsqKiI7t27x6mnnprbNmbMmOjQoUOsWrXqgMf+7Gc/i549e8ZJJ50Us2bNavDLetvSrl27YvXq1Q3OQ4cOHWLMmDGNnoeKiooG+0dEjB079rA9bx84mLVGROzYsSOOO+646Nu3b5x//vmxdu3a1hi31eTr+TxYQ4cOjbKysvjiF78YTz31VFuP02w1NTUREQd8vWwP5zSvfpN7W9q4cWPceuutMX/+/Eb3qaqqis6dO+/z+Z6SkpLD/j305ho3blxccMEF0b9//3jllVfiO9/5TpxzzjlRUVERHTt2bOvxkvjgnJWUlDTYfjifz6qqqn3eTjjqqKOiR48eB5z5q1/9ahx33HHRp0+fePHFF+Pb3/52bNiwIZYsWdLSI3+kP//5z1FfX7/f87B+/fr9HlNVVZVX5+0DB7PWgQMHxp133hknn3xy1NTUxPz582PkyJGxdu3aff7Fi3zV2Pmsra2N9957L7p27dpGk6VVVlYWixYtilNPPTXq6urijjvuiFGjRsWqVavilFNOaevxmmTPnj0xbdq0+PznPx8nnXRSo/vl63O0OdrdFayZM2fu90OEf3v78P+Qbd26NcaNGxcXXXRRTJ48uY0mb56DWWdzXHLJJfHlL385Bg8eHOPHj4+HHnoonnvuuVixYkW6RTRBS6/zcNHS67zyyitj7NixMXjw4Ljsssvipz/9adx///3xyiuvJFwFLaG8vDwmTJgQQ4cOjTPPPDOWLFkSvXr1ittuu62tR6OZBg4cGN/4xjdi+PDhMXLkyLjzzjtj5MiRsWDBgrYercmmTJkSL7/8cvziF79o61HaXLu7gjVjxoyYOHHiAfcZMGBA7s9vvPFGjB49OkaOHBm33377AY8rLS2NXbt2xfbt2xtcxaquro7S0tJDGbvZmrvOQzVgwIDo2bNnbNy4Mc4666xk3/ejtOQ6Pzhn1dXVUVZWltteXV0dQ4cOPajvebCaus7S0tJ9Pgz917/+Nd5+++1m/R0cMWJEROy9cnvCCSc0e96UevbsGR07dtznp3EP9LwqLS1t1v6Hi4NZ64d16tQphg0bFhs3bmyJEdtEY+ezqKjoiLl61ZjTTjstnnzyybYeo0mmTp2a+8Gaj7p6mq/P0eZod4HVq1ev6NWrV5P23bp1a4wePTqGDx8ed911V3TocOALfsOHD49OnTrF8uXL48ILL4yIvT8Nsnnz5igvLz/k2ZujOetM4fXXX4+33nqrQYi0hpZcZ//+/aO0tDSWL1+eC6ra2tpYtWpVs3/i8lA1dZ3l5eWxffv2WL16dQwfPjwiIh577LHYs2dPLpqaorKyMiKi1c/n/nTu3DmGDx8ey5cvj/Hjx0fE3rchli9fHlOnTt3vMeXl5bF8+fKYNm1abtuyZcta/XnYXAez1g+rr6+Pl156Kc4999wWnLR1lZeX7/Mj/PlwPlOorKw8LJ6HB5JlWXzzm9+M+++/P1asWBH9+/f/yGPy9TnaLG39KfvD1euvv56deOKJ2VlnnZW9/vrr2bZt23K3v91n4MCB2apVq3Lbrrrqqqxfv37ZY489lj3//PNZeXl5Vl5e3hZLaLLXXnstW7NmTTZ37tzs6KOPztasWZOtWbMme+edd3L7DBw4MFuyZEmWZVn2zjvvZN/61reyioqKbNOmTdmjjz6anXLKKdmnPvWp7P3332+rZXyk5q4zy7Ls3//937Pu3btnDzzwQPbiiy9m559/fta/f//svffea4slNMm4ceOyYcOGZatWrcqefPLJ7FOf+lR26aWX5r7+4b+3GzduzL773e9mzz//fLZp06bsgQceyAYMGJCdccYZbbWEffziF7/ICgsLs8WLF2e///3vsyuvvDLr3r17VlVVlWVZln3ta1/LZs6cmdv/qaeeyo466qhs/vz52bp167I5c+ZknTp1yl566aW2WkKTNXetc+fOzX77299mr7zySrZ69erskksuybp06ZKtXbu2rZbwkd55553c8y8ish/84AfZmjVrstdeey3LsiybOXNm9rWvfS23/x//+MesW7du2XXXXZetW7cuW7hwYdaxY8fskUceaaslNElz17lgwYJs6dKl2R/+8IfspZdeyq655pqsQ4cO2aOPPtpWS2iSq6++OisuLs5WrFjR4LXy3Xffze1zJD1Hm0pgNeKuu+7KImK/tw9s2rQpi4js8ccfz2177733sn/+53/OPv7xj2fdunXL/vEf/7FBlB2OLr/88v2u82/XFRHZXXfdlWVZlr377rvZ2WefnfXq1Svr1KlTdtxxx2WTJ0/OvQAcrpq7zizb+6sa/uVf/iUrKSnJCgsLs7POOivbsGFD6w/fDG+99VZ26aWXZkcffXRWVFSUXXHFFQ0i8sN/bzdv3pydccYZWY8ePbLCwsLsxBNPzK677rqspqamjVawf7feemvWr1+/rHPnztlpp52WPfPMM7mvnXnmmdnll1/eYP9f/vKX2d/93d9lnTt3zj772c9mv/nNb1p54oPXnLVOmzYtt29JSUl27rnnZi+88EIbTN10H/w6gg/fPljX5Zdfnp155pn7HDN06NCsc+fO2YABAxo8Tw9XzV3nDTfckJ1wwglZly5dsh49emSjRo3KHnvssbYZvhkae63823N0pD1Hm6Igy7KsJa+QAQC0N+3upwgBAFqawAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABITWAAAiQksAIDEBBYAQGICCwAgMYEFAJCYwAIASExgAQAkJrAAABL7/wCPQ4Fym8e1gwAAAABJRU5ErkJggg==", "_dom_classes": [], "_figure_label": "Figure", "_image_mode": "full", "_message": "", "_model_module": "jupyter-matplotlib", "_model_module_version": "^0.11", "_model_name": "MPLCanvasModel", "_rubberband_height": 0, "_rubberband_width": 0, "_rubberband_x": 0, "_rubberband_y": 0, "_size": [600.0, 600.0], "_view_count": null, "_view_module": "jupyter-matplotlib", "_view_module_version": "^0.11", "_view_name": "MPLCanvasView", "capture_scroll": false, "footer_visible": true, "header_visible": true, "layout": "IPY_MODEL_3397d15ee7c04334a1d0373843aa85ac", "pan_zoom_throttle": 33.0, "resizable": true, "tabbable": null, "toolbar": "IPY_MODEL_31fa04e2056745bf9e04ba7dbf94d1b9", "toolbar_position": "left", "toolbar_visible": "fade-in-fade-out", "tooltip": null}}, "34bef673fd994c32b513b685324681fe": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "31fa04e2056745bf9e04ba7dbf94d1b9": {"model_name": "ToolbarModel", "model_module": "jupyter-matplotlib", "model_module_version": "^0.11", "state": {"_current_action": "", "_dom_classes": [], "_model_module": "jupyter-matplotlib", "_model_module_version": "^0.11", "_model_name": "ToolbarModel", "_view_count": null, "_view_module": "jupyter-matplotlib", "_view_module_version": "^0.11", "_view_name": "ToolbarView", "button_style": "", "collapsed": true, "layout": "IPY_MODEL_34bef673fd994c32b513b685324681fe", "orientation": "vertical", "tabbable": null, "toolitems": [["Home", "Reset original view", "home", "home"], ["Back", "Back to previous view", "arrow-left", "back"], ["Forward", "Forward to next view", "arrow-right", "forward"], ["Pan", "Left button pans, Right button zooms\nx/y fixes axis, CTRL fixes aspect", "arrows", "pan"], ["Zoom", "Zoom to rectangle\nx/y fixes axis", "square-o", "zoom"], ["Download", "Download plot", "floppy-o", "save_figure"]], "tooltip": null}}, "e85140f073804c2fa7784a431953a9f9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c6ed72b9111949898f0d25f103123000": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "button_color": null, "font_family": null, "font_size": null, "font_style": null, "font_variant": null, "font_weight": null, "text_color": null, "text_decoration": null}}, "446942e85f7e43d5b65ad40d12a59815": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ButtonView", "button_style": "", "description": "Run Animation", "disabled": false, "icon": "", "layout": "IPY_MODEL_e85140f073804c2fa7784a431953a9f9", "style": "IPY_MODEL_c6ed72b9111949898f0d25f103123000", "tabbable": null, "tooltip": null}}, "6e5642581a00436993408c018784e278": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3db46f0974c5401da243c4eefc5028a8": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_446942e85f7e43d5b65ad40d12a59815"], "layout": "IPY_MODEL_6e5642581a00436993408c018784e278", "tabbable": null, "tooltip": null}}, "4484f11b66044185ae2ae7e0a2e92661": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "212a80d161c24c2f811b79e3688d68b9": {"model_name": "MPLCanvasModel", "model_module": "jupyter-matplotlib", "model_module_version": "^0.11", "state": {"_cursor": "pointer", "_data_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAJYCAYAAAC+ZpjcAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjguMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8g+/7EAAAACXBIWXMAAA9hAAAPYQGoP6dpAAAdnElEQVR4nO3dbYyV5bno8WsYZZTiLB07IMoMKDb2WA+2sYrY1gOt9WWfrSVGTz8pWmKqG0gN3bbQRIkfPNMWsotRa0nbgB+kahHEeupbjIA51tfKqVohAbXA4AtKmdExXWPWrPMBnYry3ot5Zmb9fskKedY8a7y8M2H98zz3LOqq1Wo1AABIM6ToAQAABhuBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkE1gAAMkEFgBAMoEFAJBMYAEAJBNYAADJBBYAQDKBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkE1gAAMkEFgBAMoEFAJBMYAEAJBNYAADJBBYAQDKBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkE1gAAMkEFgBAMoEFAJBMYAEAJBNYAADJBBYAQDKBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkE1gAAMkEFgBAMoEFAJBMYAEAJBNYAADJBBYAQDKBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkE1gAAMkEFgBAMoEFAJBMYAEAJBNYAADJBBYAQDKBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkq5nAuv3222P8+PHR2NgYjY2NMXHixHjwwQeLHgsAGITqqtVqtegh+sIf/vCHqK+vjy984QtRrVbjjjvuiHnz5sULL7wQX/rSl4oeDwAYRGomsHalqakp5s2bF9OmTSt6FABgEDmk6AGKUKlU4ve//310dXXFxIkTd3lOuVyOcrnce9zT0xPbtm2Lo48+Ourq6vpqVAAY8KrVarz33ntx7LHHxpAhtbE7qaYC68UXX4yJEyfGP/7xjxg+fHgsX748Tj755F2e29bWFjfeeGMfTwgAg9emTZti9OjRRY/RJ2rqFmF3d3ds3LgxOjo6YunSpfGb3/wmVq1atcvI+vQVrI6OjmhtbY1NmzZFY2NjX44NAANaZ2dntLS0xPbt26NUKhU9Tp+oqcD6tHPOOSfGjRsXCxcu3Ou5nZ2dUSqVoqOjQ2ABwH6oxffQ2rgRuhs9PT07XaUCAMhQM3uw5syZExdccEG0trbGe++9F0uWLImVK1fGww8/XPRoAMAgUzOB9fbbb8fll18eb7zxRpRKpRg/fnw8/PDD8e1vf7vo0QCAQaZmAuu3v/1t0SMAADWipvdgAQAcDAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQ1E1htbW1x+umnxxFHHBEjRoyIKVOmxLp164oeCwAYhGomsFatWhXTp0+Pp556Kh599NH48MMP49xzz42urq6iRwMABpm6arVaLXqIImzdujVGjBgRq1atirPPPnuv53d2dkapVIqOjo5obGzsgwkBYHCoxffQmrmC9WkdHR0REdHU1FTwJADAYHNI0QMUoaenJ6699tr42te+FqeccsouzymXy1Eul3uPOzs7+2o8AGCAq8krWNOnT4+XXnop7rrrrt2e09bWFqVSqffR0tLShxMCAANZze3BmjFjRqxYsSJWr14dxx9//G7P29UVrJaWlpq6fwwAGWpxD1bN3CKsVqsxc+bMWL58eaxcuXKPcRUR0dDQEA0NDX00HQAwmNRMYE2fPj2WLFkSK1asiCOOOCLefPPNiIgolUpx+OGHFzwdADCY1Mwtwrq6ul0+v2jRorjiiiv2+vpavLwJABlq8T20Zq5g1UhHAgD9QE3+FiEAwMEksAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZDUTWKtXr44LL7wwjj322Kirq4v77ruv6JEAgEGqZgKrq6srTj311LjtttuKHgUAGOQOKXqAvnLBBRfEBRdcUPQYAEANqJnA2l/lcjnK5XLvcWdnZ4HTAAADSc3cItxfbW1tUSqVeh8tLS1FjwQADBACazfmzJkTHR0dvY9NmzYVPRIAMEC4RbgbDQ0N0dDQUPQYAMAA5AoWAECymrmC9f7778f69et7j1977bVYs2ZNNDU1RWtra4GTAQCDTc0E1nPPPReTJ0/uPZ41a1ZEREydOjUWL15c0FQAwGBUM4E1adKkqFarRY8BANQAe7AAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACS1VRg3XbbbTF27Ng47LDDYsKECfHMM88UPRKQoFKJWLky4ne/2/FnpVL0RP1fpbsSaxasjCdn/i7WLFgZlW6Lti8qH3bHyvsWxO8WzoyV9y2IyofdRY/U71V6KvHE354oeow+d0jRA/SVu+++O2bNmhW/+tWvYsKECbFgwYI477zzYt26dTFixIiixwMO0LJlET/4QcTmzf98bvToiJtvjrj44uLm6s+e+tGyaP2vH8SXK/9ctC3/OTo2zro5zvy5RdudZYt+FD/463/F5uEfxeibEaP/73/GzSfPiouv/Hmxw/VTy15ZFj946Aex+e3Nez95kKmrVqvVoofoCxMmTIjTTz89br311oiI6OnpiZaWlpg5c2bMnj17r6/v7OyMUqkUHR0d0djYeLDHBfbBsmURl1wS8em/xerqdvy5dKnI+rSnfrQszph3SURUd7qF0RM7Fu2Z65aKrF1YtuhHccnf5kU1Ij5aqoiIqPvoZ2/pmOtE1qcse2VZXHLPJVGNasQ/IuKnUVPvoTURWN3d3TFs2LBYunRpTJkypff5qVOnxvbt22PFihV7/R4CC/qXSiVi7Nidr1x9Ul1dxHHHRbz8ckR9fZ+O1m9Vuivx/ufHxjE9m3e5P6Qn6uLN+uNi5NaXo36oRftY5cPuGHvT52Pz53p2iquP1VUjjvugPl6euzXqDx3a9wP2Q5WeSpz8y5Oj/b32HU/UYGDVxC3Cd955JyqVSowcOXKn50eOHBlr167d5WvK5XKUy+Xe487OzoM6I7B/nnhi93EVseOq1ubNEaVS383U3/2PeCJWxu4XbUhU49jK5ogmi/ZJT4yN2HzF7r9erYvY/LlKlOY39dVIDAA1tcl9f7S1tUWpVOp9tLS0FD0S8AlvvFH0BAPPqLBoB+KN4UVPwEBUE1ewPv/5z0d9fX289dZbOz3/1ltvxTHHHLPL18yZMydmzZrVe9zZ2SmyoB8ZNWrfzvvjHyPOPvvgzjJQvHTrqIi9bzmN//fTP8apMyzax0Y9cGvE2r0v3B9P+WmcfeGMPpio/1v9t9Xxb0v+regxClUTe7AidmxyP+OMM+KWW26JiB2b3FtbW2PGjBk2ucMA9PEerPb2z25yj9ixB2v06IjXXrMH62OV7kq8NWxsHFNpjyHx2UXribp4o350HPPBa/ZgfULlw+4Y+5Nh0f65SlR3swdrdFd9vPa/P7AH6yOVnkqMvXlstHe21+wm95q5RThr1qz49a9/HXfccUe88sorcc0110RXV1dceeWVRY8GHID6+h0fxRDxz98a/NjHxwsWiKtPqh9aHxtn7Vi0nk/t1v74eNOsBeLqU+oPHRo3n7zjjkbdp39j9aPjBSfPElefUD+kPm4+f8fPWt2ufjOgBtRMYH33u9+N+fPnxw033BBf/vKXY82aNfHQQw99ZuM7MHBcfPGOj2I47ridnx892kc07M6ZP784nrluabxZv/OivVE/2kc07MHFV/48lo65Lo7r2jk+R3fV+4iG3bj4v10cS//X0jiu8bi9nzwI1cwtwn+VW4TQf1UqO36r8I03duzN+sY3XLnam0p3JV785RPxwYY3Yti4UfHf/+Mbrlztg8qH3fHE//llvPHWhhg1clx843/+hytXe1HpqcRDLz8U/z7+32vqPVRg7SOBBQAHphbfQ2vmFiEAQF8RWAAAyQQWAEAygQUAkExgAQAkE1gAAMkEFgBAMoEFAJBMYAEAJBNYAADJBBYAQDKBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkE1gAAMkEFgBAMoEFAJBMYAEAJBNYAADJBBYAQDKBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkE1gAAMkEFgBAMoEFAJBMYAEAJBNYAADJBBYAQDKBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkE1gAAMkEFgBAMoEFAJBMYAEAJBNYAADJBBYAQDKBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkE1gAAMkEFgBAMoEFAJBMYAEAJBNYAADJBBYAQDKBBQCQTGABACQTWAAAyQQWAEAygQUAkExgAQAkE1gAAMlqIrBuuummOOuss2LYsGFx5JFHFj0OADDI1URgdXd3x6WXXhrXXHNN0aMAADXgkKIH6As33nhjREQsXry42EEAgJpQE4F1IMrlcpTL5d7jzs7OAqcBAAaSmrhFeCDa2tqiVCr1PlpaWooeCQAYIAZsYM2ePTvq6ur2+Fi7du0Bf/85c+ZER0dH72PTpk2J0wMAg9mAvUX4wx/+MK644oo9nnPCCScc8PdvaGiIhoaGA349AFC7BmxgNTc3R3Nzc9FjAAB8xoANrP2xcePG2LZtW2zcuDEqlUqsWbMmIiJOPPHEGD58eLHDAQCDTk0E1g033BB33HFH7/FXvvKViIh4/PHHY9KkSQVNBQAMVnXVarVa9BADQWdnZ5RKpejo6IjGxsaixwGAAaMW30MH7G8RAgD0VwILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGSDPrBef/31mDZtWhx//PFx+OGHx7hx42Lu3LnR3d1d9GgAwCB1SNEDHGxr166Nnp6eWLhwYZx44onx0ksvxVVXXRVdXV0xf/78oscDAAahumq1Wi16iL42b968uP322+PVV1/d59d0dnZGqVSKjo6OaGxsPIjTAcDgUovvoYP+FuGudHR0RFNTU9FjAACD1KC/Rfhp69evj1tuuWWvtwfL5XKUy+Xe487OzoM9GgAwSAzYK1izZ8+Ourq6PT7Wrl2702va29vj/PPPj0svvTSuuuqqPX7/tra2KJVKvY+WlpaD+b8DAAwiA3YP1tatW+Pdd9/d4zknnHBCDB06NCIitmzZEpMmTYozzzwzFi9eHEOG7Lktd3UFq6WlpabuHwNAhlrcgzVgbxE2NzdHc3PzPp3b3t4ekydPjtNOOy0WLVq017iKiGhoaIiGhoZ/dUwAoAYN2MDaV+3t7TFp0qQYM2ZMzJ8/P7Zu3dr7tWOOOabAyQCAwWrQB9ajjz4a69evj/Xr18fo0aN3+toAvTsKAPRzA3aT+7664oorolqt7vIBAHAwDPrAAgDoawILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEhWE4F10UUXRWtraxx22GExatSouOyyy2LLli1FjwUADFI1EViTJ0+Oe+65J9atWxf33ntvbNiwIS655JKixwIABqm6arVaLXqIvnb//ffHlClTolwux6GHHrpPr+ns7IxSqRQdHR3R2Nh4kCcEgMGjFt9DDyl6gL62bdu2uPPOO+Oss87aY1yVy+Uol8u9xx0dHRGx44cEANh3H7931tI1nZoJrB//+Mdx6623xgcffBBnnnlmPPDAA3s8v62tLW688cbPPN/S0nKwRgSAQe3dd9+NUqlU9Bh9YsDeIpw9e3b87Gc/2+M5r7zySnzxi1+MiIh33nkntm3bFn/729/ixhtvjFKpFA888EDU1dXt8rWfvoK1ffv2GDNmTGzcuLFmfjgydHZ2RktLS2zatKlmLgv/q6zZgbFu+8+aHRjrtv86OjqitbU1/v73v8eRRx5Z9Dh9YsAG1tatW+Pdd9/d4zknnHBCDB069DPPb968OVpaWuLJJ5+MiRMn7tN/rxbvH2ewbvvPmh0Y67b/rNmBsW77rxbXbMDeImxubo7m5uYDem1PT09ExE5XqAAAsgzYwNpXTz/9dDz77LPx9a9/PY466qjYsGFDXH/99TFu3Lh9vnoFALA/Bv3nYA0bNiyWLVsW3/rWt+Kkk06KadOmxfjx42PVqlXR0NCwz9+noaEh5s6du1+vwbodCGt2YKzb/rNmB8a67b9aXLMBuwcLAKC/GvRXsAAA+prAAgBIJrAAAJIJLACAZALrAFx00UXR2toahx12WIwaNSouu+yy2LJlS9Fj9Wuvv/56TJs2LY4//vg4/PDDY9y4cTF37tzo7u4uerR+7aabboqzzjorhg0bVjOffnwgbrvtthg7dmwcdthhMWHChHjmmWeKHqlfW716dVx44YVx7LHHRl1dXdx3331Fj9TvtbW1xemnnx5HHHFEjBgxIqZMmRLr1q0reqx+7/bbb4/x48dHY2NjNDY2xsSJE+PBBx8seqw+IbAOwOTJk+Oee+6JdevWxb333hsbNmyISy65pOix+rW1a9dGT09PLFy4MF5++eX4xS9+Eb/61a/iJz/5SdGj9Wvd3d1x6aWXxjXXXFP0KP3W3XffHbNmzYq5c+fGn//85zj11FPjvPPOi7fffrvo0fqtrq6uOPXUU+O2224repQBY9WqVTF9+vR46qmn4tFHH40PP/wwzj333Ojq6ip6tH5t9OjR8dOf/jSef/75eO655+Kb3/xmfOc734mXX3656NEOOh/TkOD++++PKVOmRLlcjkMPPbTocQaMefPmxe233x6vvvpq0aP0e4sXL45rr702tm/fXvQo/c6ECRPi9NNPj1tvvTUidvxLDS0tLTFz5syYPXt2wdP1f3V1dbF8+fKYMmVK0aMMKFu3bo0RI0bEqlWr4uyzzy56nAGlqakp5s2bF9OmTSt6lIPKFax/0bZt2+LOO++Ms846S1ztp46Ojmhqaip6DAaw7u7ueP755+Occ87pfW7IkCFxzjnnxJ/+9KcCJ2Ow6+joiIjwd9h+qFQqcdddd0VXV1dN/EsqAusA/fjHP47Pfe5zcfTRR8fGjRtjxYoVRY80oKxfvz5uueWW+P73v1/0KAxg77zzTlQqlRg5cuROz48cOTLefPPNgqZisOvp6Ylrr702vva1r8Upp5xS9Dj93osvvhjDhw+PhoaGuPrqq2P58uVx8sknFz3WQSewPjJ79uyoq6vb42Pt2rW951933XXxwgsvxCOPPBL19fVx+eWXRy3ebd3fdYuIaG9vj/PPPz8uvfTSuOqqqwqavDgHsmZA/zF9+vR46aWX4q677ip6lAHhpJNOijVr1sTTTz8d11xzTUydOjX++te/Fj3WQWcP1ke2bt0a77777h7POeGEE2Lo0KGfeX7z5s3R0tISTz75ZE1c9vyk/V23LVu2xKRJk+LMM8+MxYsXx5Ahtdf4B/KzZg/WrnV3d8ewYcNi6dKlO+0hmjp1amzfvt2V5X1gD9b+mTFjRqxYsSJWr14dxx9/fNHjDEjnnHNOjBs3LhYuXFj0KAfVIUUP0F80NzdHc3PzAb22p6cnIiLK5XLmSAPC/qxbe3t7TJ48OU477bRYtGhRTcZVxL/2s8bOhg4dGqeddlo89thjvYHQ09MTjz32WMyYMaPY4RhUqtVqzJw5M5YvXx4rV64UV/+Cnp6emni/FFj76emnn45nn302vv71r8dRRx0VGzZsiOuvvz7GjRtXc1ev9kd7e3tMmjQpxowZE/Pnz4+tW7f2fu2YY44pcLL+bePGjbFt27bYuHFjVCqVWLNmTUREnHjiiTF8+PBih+snZs2aFVOnTo2vfvWrccYZZ8SCBQuiq6srrrzyyqJH67fef//9WL9+fe/xa6+9FmvWrImmpqZobW0tcLL+a/r06bFkyZJYsWJFHHHEEb17/EqlUhx++OEFT9d/zZkzJy644IJobW2N9957L5YsWRIrV66Mhx9+uOjRDr4q++Uvf/lLdfLkydWmpqZqQ0NDdezYsdWrr766unnz5qJH69cWLVpUjYhdPti9qVOn7nLNHn/88aJH61duueWWamtra3Xo0KHVM844o/rUU08VPVK/9vjjj+/y52rq1KlFj9Zv7e7vr0WLFhU9Wr/2ve99rzpmzJjq0KFDq83NzdVvfetb1UceeaTosfqEPVgAAMlqcxMMAMBBJLAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAgmcACAEgmsAAAkgksAIBkAgsAIJnAAgBIJrAAAJIJLACAZAILACCZwAIASCawAACSCSwAgGQCCwAg2f8HukOm2JTpG5MAAAAASUVORK5CYII=", "_dom_classes": [], "_figure_label": "Figure", "_image_mode": "full", "_message": "", "_model_module": "jupyter-matplotlib", "_model_module_version": "^0.11", "_model_name": "MPLCanvasModel", "_rubberband_height": 0, "_rubberband_width": 0, "_rubberband_x": 0, "_rubberband_y": 0, "_size": [600.0, 600.0], "_view_count": null, "_view_module": "jupyter-matplotlib", "_view_module_version": "^0.11", "_view_name": "MPLCanvasView", "capture_scroll": false, "footer_visible": true, "header_visible": true, "layout": "IPY_MODEL_4484f11b66044185ae2ae7e0a2e92661", "pan_zoom_throttle": 33.0, "resizable": true, "tabbable": null, "toolbar": "IPY_MODEL_189913b17f584faf87cc8bef9f1101e9", "toolbar_position": "left", "toolbar_visible": "fade-in-fade-out", "tooltip": null}}, "de71c8efdfca48c6888a3795f5a9f13e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "189913b17f584faf87cc8bef9f1101e9": {"model_name": "ToolbarModel", "model_module": "jupyter-matplotlib", "model_module_version": "^0.11", "state": {"_current_action": "", "_dom_classes": [], "_model_module": "jupyter-matplotlib", "_model_module_version": "^0.11", "_model_name": "ToolbarModel", "_view_count": null, "_view_module": "jupyter-matplotlib", "_view_module_version": "^0.11", "_view_name": "ToolbarView", "button_style": "", "collapsed": true, "layout": "IPY_MODEL_de71c8efdfca48c6888a3795f5a9f13e", "orientation": "vertical", "tabbable": null, "toolitems": [["Home", "Reset original view", "home", "home"], ["Back", "Back to previous view", "arrow-left", "back"], ["Forward", "Forward to next view", "arrow-right", "forward"], ["Pan", "Left button pans, Right button zooms\nx/y fixes axis, CTRL fixes aspect", "arrows", "pan"], ["Zoom", "Zoom to rectangle\nx/y fixes axis", "square-o", "zoom"], ["Download", "Download plot", "floppy-o", "save_figure"]], "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vorlesung/Kinematik/inverse_animated_arm';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Kinematik Arm" href="kinematics_arm.html" />
+    <link rel="prev" title="Forward Kinematik" href="fw_kinematic_simplify.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="ASUMR jupyter book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="ASUMR jupyter book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Über dieses Material
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Vorlesung</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Autonomie.html">Autonomie</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Autonomie/quizzes.html">Quizzes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Locomotion.html">Locomotaion</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Locomotion/quizzes.html">Quizzes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Kinematik.html">Kinematik</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fw_kinematic_simplify.html">Forward Kinematik</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Inverse Kinematik</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kinematics_arm.html">Kinematik Arm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robotictoolbox_example.html">Robotictoolbox Demonstration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quizzes.html">Quizzes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Pid-Controller.html">PID Controller</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Pid-Controller/pid_robot_car.html">PID Robot Car</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Pid-Controller/pid_robot_car_noise.html">PID Robot Car mit Noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Pid-Controller/pid_robot_non_interactive.html">PID Robot non Interactive</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Sensorik.html">Sensorik</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Sensorik/quizzes.html">Quizzes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Architekturen.html">Architekturen</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Architekturen/quizzes.html">Quizzes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Localisation.html">Localisation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Localisation/quizzes.html">Quizzes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Localisation/markov.html">Markov Lokalisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Localisation/mcl.html">Monte Carlo Localisation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../PathPlanning.html">Path Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../PathPlanning/quizzes.html">Quizzes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../PathPlanning/dijkstra.html">Dijkstra</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ROS 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ros2/setup.html">Setup</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/setup/linux.html">Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/setup/windows.html">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/setup/vm.html">VM</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ros2/packages.html">Packages</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/packages/konzept.html">Konzept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/packages/create.html">Erstelle ein Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/packages/launch.html">Launch Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/packages/quiz.html">Quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ros2/node.html">Node</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/node/konzept.html">Konzept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/node/beispiel.html">Beispiel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/node/aufgabe.html">Übung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/node/quiz.html">Quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ros2/topic.html">Topic</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/topic/konzept.html">Konzept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/topic/beispiel.html">Beispiel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/topic/aufgabe.html">Aufgabe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/topic/quiz.html">Quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ros2/interface.html">Interface</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/interface/konzept.html">Konzept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/interface/beispiel.html">Beispiel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/interface/aufgabe.html">Aufgabe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/interface/quiz.html">Quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ros2/service.html">Service</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/service/konzept.html">Konzept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/service/beispiel.html">Beispiel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/service/aufgabe.html">Aufgabe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/service/quiz.html">Quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ros2/navigation.html">Navigation</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/navigation/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/navigation/example.html">Beispiel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ros2/navigation/aufgabe.html">Übung</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ros2/abschlussaufgabe.html">Abschlussaufgabe</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://jupyterhub.wwu.de/hub/user-redirect/git-pull?repo=https%3A//github.com/j-albr16/asumr&urlpath=tree/asumr/vorlesung/Kinematik/inverse_animated_arm.md&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/j-albr16/asumr" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/j-albr16/asumr/edit/main/vorlesung/Kinematik/inverse_animated_arm.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/j-albr16/asumr/issues/new?title=Issue%20on%20page%20%2Fvorlesung/Kinematik/inverse_animated_arm.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/vorlesung/Kinematik/inverse_animated_arm.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../_sources/vorlesung/Kinematik/inverse_animated_arm.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-sm btn-fullscreen-button" data-bs-toggle="modal" data-bs-target="#chatModal">
+<span class="btn__icon-container m-auto" id="chat_button_icon">
+    <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28"><path fill="currentColor" d="M160-360q-50 0-85-35t-35-85q0-50 35-85t85-35v-80q0-33 23.5-56.5T240-760h120q0-50 35-85t85-35q50 0 85 35t35 85h120q33 0 56.5 23.5T800-680v80q50 0 85 35t35 85q0 50-35 85t-85 35v160q0 33-23.5 56.5T720-120H240q-33 0-56.5-23.5T160-200v-160Zm200-80q25 0 42.5-17.5T420-500q0-25-17.5-42.5T360-560q-25 0-42.5 17.5T300-500q0 25 17.5 42.5T360-440Zm240 0q25 0 42.5-17.5T660-500q0-25-17.5-42.5T600-560q-25 0-42.5 17.5T540-500q0 25 17.5 42.5T600-440ZM320-280h320v-80H320v80Zm-80 80h480v-480H240v480Zm240-240Z"/></svg>
+    </span>
+</button>
+
+
+<!-- <script src="chat/chat.js"></script> -->
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Inverse Kinematik</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-kinematic-computation-for-a-multi-segmented-arm-in-two-dimensions">Inverse Kinematic computation for a multi-segmented arm in two dimensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-segmented-arm">The two segmented arm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-the-class-with-examples">Calling the class with examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmented-manipulator">3-segmented Manipulator</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="inverse-kinematik">
+<h1>Inverse Kinematik<a class="headerlink" href="#inverse-kinematik" title="Permalink to this heading">#</a></h1>
+<section id="inverse-kinematic-computation-for-a-multi-segmented-arm-in-two-dimensions">
+<h2>Inverse Kinematic computation for a multi-segmented arm in two dimensions<a class="headerlink" href="#inverse-kinematic-computation-for-a-multi-segmented-arm-in-two-dimensions" title="Permalink to this heading">#</a></h2>
+<p>Given is a robotic arm manipulator. Your task is to provide the inverse kinematic calculation for the arm. The segments length are initialized to 1 and there is a visualization of a given posture.</p>
+</section>
+<section id="the-two-segmented-arm">
+<h2>The two segmented arm<a class="headerlink" href="#the-two-segmented-arm" title="Permalink to this heading">#</a></h2>
+<p>For this arm, you can find (and should already have) found an analytical solution for inverse kinematics.</p>
+<p>Your task is now to find an iterative approach. For each joint (start with a single one):</p>
+<ul class="simple">
+<li><p>Compute how the position of the end-effector changes when you slightly move the joint in either of the two directions</p></li>
+<li><p>Choose the direction which brings the end effector closer to the target and slightly move the joint in that direction</p></li>
+<li><p>Continue this approach until you are converging on the target position.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> widget
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">Button</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">VBox</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Arrow</span>
+<span class="kn">from</span> <span class="nn">matplotlib.collections</span> <span class="kn">import</span> <span class="n">PatchCollection</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TwoSegmentManipulator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Constructor to set the length of the two segments</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta_angle</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+    <span class="k">def</span> <span class="nf">set_theta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_theta</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">new_theta</span>
+
+    <span class="k">def</span> <span class="nf">get_theta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span>
+    
+    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Method to compute the forward kinematics of the manipulator</span>
+        <span class="c1"># based on the joint angles theta</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+    
+    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="c1"># Method to compute the inverse kinematics of the manipulator</span>
+        <span class="c1"># based on the target position (x, y)</span>
+        <span class="c1"># TODO - you have to implement this</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
+    
+    <span class="k">def</span> <span class="nf">iterative_inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="c1"># TODO Implement this function</span>
+        <span class="c1"># for each joint</span>
+        <span class="n">theta_delta</span> <span class="o">=</span> <span class="mf">0.1</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+            <span class="c1"># Vary the joint angle slightly and check which brings the end effector closer </span>
+            <span class="c1"># to the target</span>
+            
+            <span class="n">current_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">()</span>
+            
+            <span class="n">theta_save</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta_save</span> <span class="o">+</span> <span class="n">theta_delta</span>
+            
+            
+            <span class="n">new_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">()</span>
+            
+            <span class="n">delta_pos</span> <span class="o">=</span> <span class="n">new_pos</span> <span class="o">-</span> <span class="n">current_pos</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">delta_pos</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta_save</span>
+                
+            
+            
+
+            <span class="c1"># Move the self.theta[i] into that direction.</span>
+    
+    <span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a figure and axis</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span>
+        <span class="c1"># Method to visualize the manipulator given the joint angles theta</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+        <span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+        
+        <span class="c1"># Plot the segments of the manipulator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_1</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;bo-&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_2</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p3</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;ro-&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">update_visualization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Update the visualization of the robot&#39;s pose and history</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+        <span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_1</span><span class="o">.</span><span class="n">set_data</span><span class="p">([[</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_2</span><span class="o">.</span><span class="n">set_data</span><span class="p">([[</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p3</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
+
+    <span class="k">def</span> <span class="nf">set_target_for_iterative_inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">target</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">target</span>
+
+    <span class="k">def</span> <span class="nf">simulation_run_anim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Run the simulation for a certain number of steps</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iterative_inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_visualization</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calling-the-class-with-examples">
+<h2>Calling the class with examples<a class="headerlink" href="#calling-the-class-with-examples" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create buttons and sliders for simulation control</span>
+<span class="n">button_run_anim</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Run Animation&quot;</span><span class="p">)</span>
+
+<span class="n">manipulator</span> <span class="o">=</span> <span class="n">TwoSegmentManipulator</span><span class="p">()</span>
+<span class="n">manipulator</span><span class="o">.</span><span class="n">set_target_for_iterative_inverse_kinematics</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">])</span> <span class="p">)</span>
+
+<span class="c1"># Define the event handlers for buttons and sliders</span>
+<span class="n">button_run_anim</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">manipulator</span><span class="o">.</span><span class="n">simulation_run_anim</span><span class="p">)</span>
+
+<span class="c1"># Display the buttons and sliders in a VBox</span>
+<span class="n">controls</span> <span class="o">=</span> <span class="n">VBox</span><span class="p">([</span><span class="n">button_run_anim</span><span class="p">])</span> <span class="c1"># button_reset, button_step, button_run_anim, button_run])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">controls</span><span class="p">)</span>
+
+<span class="c1"># Start the simulation</span>
+<span class="n">manipulator</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "673442661f074aefb8f06d1f327ac8a3"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "74ae4142648643d2bcb2c69c72d92b57"}</script></div>
+</div>
+</section>
+<section id="segmented-manipulator">
+<h2>3-segmented Manipulator<a class="headerlink" href="#segmented-manipulator" title="Permalink to this heading">#</a></h2>
+<p>Extend this now for a three-segmented manipulator for which there is no closed analytical solution (and there are multiple solutions possible for many targets).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ThreeSegmentManipulator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">l3</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Constructor to set the length of the two segments</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l3</span> <span class="o">=</span> <span class="n">l3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta_angle</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+    <span class="k">def</span> <span class="nf">set_theta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_theta</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">new_theta</span>
+
+    <span class="k">def</span> <span class="nf">get_theta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span>
+    
+    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Method to compute the forward kinematics of the manipulator</span>
+        <span class="c1"># based on the joint angles theta</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">l3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">l3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+    
+    <span class="k">def</span> <span class="nf">iterative_inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="c1"># TODO Implement this function</span>
+        <span class="c1"># for each joint</span>
+        <span class="c1"># for i in range(0,2):</span>
+            <span class="c1"># Vary the joint angle slightly and check which brings the end effector closer </span>
+            <span class="c1"># to the target</span>
+
+            <span class="c1"># Move the self.theta[i] into that direction.</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a figure and axis</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span>
+        <span class="c1"># Method to visualize the manipulator given the joint angles theta</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+        <span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+        <span class="n">p4</span> <span class="o">=</span> <span class="n">p3</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">l3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">])])</span>
+
+        <span class="c1"># Plot the segments of the manipulator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_1</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;bo-&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_2</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p3</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;ro-&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_3</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p4</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p4</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;go-&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">update_visualization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Update the visualization of the robot&#39;s pose and history</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+        <span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+        <span class="n">p4</span> <span class="o">=</span> <span class="n">p3</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">l3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">])])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_1</span><span class="o">.</span><span class="n">set_data</span><span class="p">([[</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_2</span><span class="o">.</span><span class="n">set_data</span><span class="p">([[</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p3</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s_3</span><span class="o">.</span><span class="n">set_data</span><span class="p">([[</span><span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p4</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">p3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p4</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
+
+    <span class="k">def</span> <span class="nf">set_target_for_iterative_inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">target</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">target</span>
+
+    <span class="k">def</span> <span class="nf">simulation_run_anim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Run the simulation for a certain number of steps</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iterative_inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_visualization</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create buttons and sliders for simulation control</span>
+<span class="n">button_run_anim</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Run Animation&quot;</span><span class="p">)</span>
+
+<span class="n">manipulator_3</span> <span class="o">=</span> <span class="n">ThreeSegmentManipulator</span><span class="p">()</span>
+<span class="n">manipulator_3</span><span class="o">.</span><span class="n">set_target_for_iterative_inverse_kinematics</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">3.</span><span class="p">])</span> <span class="p">)</span>
+
+<span class="c1"># Define the event handlers for buttons and sliders</span>
+<span class="n">button_run_anim</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">manipulator_3</span><span class="o">.</span><span class="n">simulation_run_anim</span><span class="p">)</span>
+<span class="c1"># Display the buttons and sliders in a VBox</span>
+<span class="n">controls</span> <span class="o">=</span> <span class="n">VBox</span><span class="p">([</span><span class="n">button_run_anim</span><span class="p">])</span> <span class="c1"># button_reset, button_step, button_run_anim, button_run])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">controls</span><span class="p">)</span>
+
+<span class="c1"># Start the simulation</span>
+<span class="n">manipulator_3</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "3db46f0974c5401da243c4eefc5028a8"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "212a80d161c24c2f811b79e3688d68b9"}</script></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./vorlesung/Kinematik"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="fw_kinematic_simplify.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Forward Kinematik</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="kinematics_arm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Kinematik Arm</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-kinematic-computation-for-a-multi-segmented-arm-in-two-dimensions">Inverse Kinematic computation for a multi-segmented arm in two dimensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-segmented-arm">The two segmented arm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-the-class-with-examples">Calling the class with examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmented-manipulator">3-segmented Manipulator</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Florian Bohlken und Jan Albrecht
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  <!-- Modal -->
+<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content h-100">
+      <div class="modal-header bg-info text-white align-items-center p-3 border-bottom-0">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">ASUMR Chat Bot</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-2 bg-grey">
+        <section style="background-color: #eee;" class="h-100">
+          <div class="container h-100">
+            <div class="d-flex flex-column h-100">
+                <div id="chatMessages" class="flex-grow-1 overflow-scroll">
+                </div>
+                <form id="chatForm" class="flex-shrink-1">
+                    <textarea class="form-control" id="chatInput" rows="4" placeholder="hast du eine Frage?"></textarea>
+                    <input type="submit" hidden/>
+                </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/chat/chat.js">
+</script>
+
+</body>
+</html>
