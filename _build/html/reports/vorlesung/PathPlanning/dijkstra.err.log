@@ -1,0 +1,81 @@
+Traceback (most recent call last):
+  File "/home/scrutycs/uni/5-Semester/ASUMR/venv/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/scrutycs/uni/5-Semester/ASUMR/venv/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/scrutycs/uni/5-Semester/ASUMR/venv/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/scrutycs/uni/5-Semester/ASUMR/venv/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/home/scrutycs/uni/5-Semester/ASUMR/venv/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/scrutycs/uni/5-Semester/ASUMR/venv/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+class MapSolver:
+
+    def __init__(self, map_, start, end):
+        """
+        :param map_: 2d Array
+        :param start: Tuple
+        :param end: Tuple
+        """
+        self.map = map_.copy()
+        self.start = start
+        self.end = end
+        self.dim = map_.shape[0]
+
+        # your code
+
+    def dijkstra(self):
+        """
+        Dijkstra's algorithm for finding the shortest path between two points in a graph
+
+        :return distances: list of distances from start to every other point
+        """
+
+        # your code here
+        pass
+
+    def get_path_from_distances(self, distances):
+        """
+        :param distances: list of distances from start to every other point (dijkstra)
+        :return path: list of positions from start to end
+        """
+
+        # your code here
+        pass
+        
+
+    def __call__(self):
+        """
+        calculates shortest path for given map from start to end position.
+        Also returns the calculated distances from every position to start position
+
+        :return (distance_map, path): 2d array, list of all positions from start to end
+        """
+        distance_map, path = None, None 
+
+        # your code here
+
+        
+        # Bitte folgende 2 Zeilen nach Implementation löschen
+        distance_map = self.map
+        path = []
+
+        assert distance_map.shape = self.map.shape, "distance_map must have the same shape as self.map"
+        assert isinstance(path, list)
+
+        return distance_map, path
+------------------
+
+
+[0;36m  Cell [0;32mIn[2], line 52[0;36m[0m
+[0;31m    assert distance_map.shape = self.map.shape, "distance_map must have the same shape as self.map"[0m
+[0m                              ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+
