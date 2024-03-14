@@ -68,7 +68,6 @@ parts:
         sections:
           - file: ros2/interface/konzept.md
           - file: ros2/interface/beispiel.md
-          - file: ros2/interface/aufgabe.md
           - file: ros2/interface/quiz.md
       - file: ros2/service
         sections:

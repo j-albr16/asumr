@@ -17,6 +17,7 @@ latex:
 parse:
   myst_enable_extensions:
     - amsmath
+    - colon_fence
 
 exclude_patterns:
   - venv/*
@@ -24,7 +25,9 @@ exclude_patterns:
 # Add a bibtex file so that we can create citations
 # bibtex_bibfiles:
 #   - references.bib
-
+sphinx:
+  config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
