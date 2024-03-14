@@ -1,0 +1,5 @@
+include:
+  - _images
+  - _sources
+  - _sphinx_design_static
+  - _static
