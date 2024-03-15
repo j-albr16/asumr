@@ -1,14 +1,12 @@
-# Packages
+# Pakete
 
 ## Konzept
 
-### Package
+Ein Paket ist eine Organisationsstruktur für deinen ROS2-Code. Innerhalb eines Pakets ist der Quellcode definiert, um ROS2-Artefakte wie Nodes, Topics und Services zu erstellen.
 
-Ein Paket ist eine Organisationsweise für deinen ROS2 Quelltext. In einem Paket ist der Quelltext zum Erstellen von ROS2 Artefakten wie Nodes, Topics und Services definiert.
+Pakete bieten auch eine einfache Möglichkeit, ROS2-Code mit anderen zu teilen:
 
-Packages sind auch eine einfache Möglichkeit ROS2 Code mit anderen Leuten zu teilen:
-
-Minimale Bestandteile eines Pakets:
+### Minimale Bestandteile eines Pakets
 
 ```text
 asumr_package/
@@ -20,23 +18,29 @@ asumr_package/
     src/
 ```
 
-Erklärung:
+### Erklärung
 
-- **package.xml** Metainformationen 
-- **resource/_<package_name>_** Marker file für das Paket
-- **setup.cfg** Muss vorhanden sein wenn das Paket Executables besitzt (Damit `ros2 run` funktioniert)
-- **setup.py** Build Script zum Installieren des Pakets
-- **_<package_name>_** Wird von ROS2 Tools verwendet, um das Paket zu finden
+- **package.xml**: Metainformationen 
+- **resource/_<package_name>_**: Markerdatei für das Paket
+- **setup.cfg**: Muss vorhanden sein, wenn das Paket Ausführbares enthält (damit `ros2 run` funktioniert)
+- **setup.py**: Build-Skript zum Installieren des Pakets
+- **_<package_name>_**: Wird von ROS2-Tools verwendet, um das Paket zu finden
 
-### Workspace
+## Arbeitsbereich
 
-Ein ROS2 Workspace ist ein Ordner, der alle deine packages enthält.
+Ein ROS2-Arbeitsbereich ist ein Ordner, der alle deine Pakete enthält.
 
 ```bash
 mkdir -p ~/ros2_ws/src
 ```
 
-wenn du neue Packages erstellst, kannst du diese in den `~/ros2_ws/src` Ordner legen.
+Wenn du neue Pakete erstellst, kannst du diese in den `~/ros2_ws/src` Ordner legen.
+
+```{note}
+Der Name deines Arbeitsbereiches muss hierbei nicht `ros2_ws` sein, sondern kann beliebig gewählt werden. Beachte hierbei, dass das Anhängsel `_ws` für _workspace_ jedoch gebräuchlich ist, um Arbeitsbereiche einfach als solche erkennen zu können.
+```
+
+## Weitere Informationen und Übungshilfen
 
 ```{tableofcontents}
 ```
