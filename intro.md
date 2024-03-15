@@ -1,7 +1,6 @@
 # Über dieses Material
 
-Die ROS2 Dokumentation orientiert sich stark an der offiziellen ROS2 [doku](https://docs.ros.org/en/iron/). Man diese Gut zur Wissenserweiterung oder als Englische Anleitung verwenden.
-
+Die hier bereitgestellte ROS2 Dokumentation orientiert sich stark an den [offiziellen ROS2 Docs](https://docs.ros.org/en/humble/). Diese ist in weiten Teilen bereits eine sehr gute englische Anleitung, welche ihr auch gerne als Wissenserweiterung und Nachschlagewerk nutzen könnt.
 
 ```{tableofcontents}
 ```

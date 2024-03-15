@@ -1,3 +1,4 @@
-venv
-_build
-node_modules
+venv/
+_build/
+node_modules/
+**/.DS_Store
