@@ -3,9 +3,9 @@
 
 format: jb-book
 root: intro
-parts: 
+parts:
   - caption: Vorlesung
-    chapters: 
+    chapters:
       - file: vorlesung/Autonomie
         sections:
         - file: vorlesung/Autonomie/quizzes
@@ -13,7 +13,7 @@ parts:
         sections:
         - file: vorlesung/Locomotion/quizzes
       - file: vorlesung/Kinematik
-        sections: 
+        sections:
         - file: vorlesung/Kinematik/fw_kinematic_simplify
         - file: vorlesung/Kinematik/inverse_animated_arm
         - file: vorlesung/Kinematik/kinematics_arm
@@ -42,20 +42,19 @@ parts:
   - caption: ROS 2
     chapters:
       - file: ros2/setup
-        sections: 
+        sections:
         - file: ros2/setup/linux
         - file: ros2/setup/windows
+        - file: ros2/setup/macos
         - file: ros2/setup/vm
         - file: ros2/setup/sourcen
       - file: ros2/packages
-        sections: 
-        - file: ros2/packages/konzept
+        sections:
         - file: ros2/packages/create.md
         - file: ros2/packages/launch.md
         - file: ros2/packages/quiz.md
       - file: ros2/node
-        sections: 
-          - file: ros2/node/konzept
+        sections:
           - file: ros2/node/beispiel.md
           - file: ros2/node/aufgabe.md
           - file: ros2/node/quiz.md
@@ -78,9 +77,8 @@ parts:
           - file: ros2/service/aufgabe.md
           - file: ros2/service/quiz.md
       - file: ros2/navigation
-        sections: 
+        sections:
           - file: ros2/navigation/setup.md
           - file: ros2/navigation/example.md
           - file: ros2/navigation/aufgabe.md
       - file: ros2/abschlussaufgabe
-
