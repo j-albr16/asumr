@@ -12,19 +12,18 @@ kernelspec:
 
 # Beispiel
 
-
 ## AMCL and Navigation
 
-in diesem Beispiel wird eine Turtlebot Simulation gestartet. Dabei ist die Map bekannt. Mittels AMCL wird der Turtlebot lokalisiert.
+In diesem Beispiel wird eine Turtlebot Simulation gestartet. Dabei ist die Map bekannt. Mittels [AMCL](https://roboticsknowledgebase.com/wiki/state-estimation/adaptive-monte-carlo-localization/) wird der Turtlebot lokalisiert.
 
 ### Starten der Simulation
 
-Beovr die Simulation gestartet werden kann, muss die `setup.bash` gesourced werden und einige Umgebungsvariablen gesetzt werden. 
+Bevor die Simulation gestartet werden kann, muss natürlich zunächst [ROS2 gesourced](ros2/setup/sourcen) werden. Danach müssen noch einige Umgebungsvariablen gesetzt werden:
 
 ```bash
-source /opt/ros/<ros2-distro>/setup.bash
+source /opt/ros/humble/setup.bash
 export TURTLEBOT3_MODEL=waffle
-export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<ros2-distro>/share/turtlebot3_gazebo/models
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/humble/share/turtlebot3_gazebo/models
 ```
 
 nun kann die Simulation mit folgendem Befehl gestartet werden:

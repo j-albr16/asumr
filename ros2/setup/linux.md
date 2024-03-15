@@ -1,10 +1,10 @@
 # Linux
 
-## ROS 2 Humble Installationsanleitung für Ubuntu 22.04 LTS (Jammy)
+## ROS2 Humble Installationsanleitung für Ubuntu 22.04 LTS (Jammy)
 
-Herzlich willkommen zur Installationsanleitung für ROS 2 Humble! Wenn du zum ersten Mal mit diesem Thema zu tun hast, keine Sorge, wir werden dich durch den Einrichtungsprozess Schritt für Schritt begleiten.
+Herzlich willkommen zur Installationsanleitung für ROS2 Humble! Wenn du zum ersten Mal mit diesem Thema zu tun hast, keine Sorge, wir werden dich durch den Einrichtungsprozess Schritt für Schritt begleiten.
 
-Diese Anleitung basiert auf der offiziellen [Installationsanleitung für ROS 2 Humble auf Ubuntu](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html).
+Diese Anleitung basiert auf der offiziellen [Installationsanleitung für ROS2 Humble auf Ubuntu](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html).
 
 ## Installation
 
