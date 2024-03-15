@@ -18,7 +18,7 @@ In diesem Beispiel wird eine Turtlebot Simulation gestartet. Dabei ist die Map b
 
 ### Starten der Simulation
 
-Bevor die Simulation gestartet werden kann, muss natürlich zunächst [ROS2 gesourced](ros2/setup/sourcen) werden. Danach müssen noch einige Umgebungsvariablen gesetzt werden:
+Bevor die Simulation gestartet werden kann, muss natürlich zunächst [ROS2 gesourced](../setup/sourcen.md) werden. Danach müssen noch einige Umgebungsvariablen gesetzt werden:
 
 ```bash
 source /opt/ros/humble/setup.bash
