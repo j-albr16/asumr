@@ -3,7 +3,7 @@
 
 title: ASUMR jupyter book
 author: Florian Bohlken und Jan Albrecht
-logo: logo.png
+logo: images/tbot.svg
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html

@@ -4,7 +4,7 @@ Ein Paket ist eine Organisationsstruktur für deinen ROS2-Code. Innerhalb eines 
 
 Pakete bieten auch eine einfache Möglichkeit, ROS2-Code mit anderen zu teilen:
 
-### Minimale Bestandteile eines Pakets
+## Minimale Bestandteile eines Pakets
 
 ```text
 asumr_package/

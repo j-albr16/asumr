@@ -1,23 +1,25 @@
 # Interface 
 
-Die ROS2 Schnittstellen (Interfaces) sind eine wichtige Weiterentwicklung im ROS2-Framework, welche dazu dient, die Definition und Verwendung von Nachrichten, Diensten und Aktionen in einem ROS2-System zu vereinheitlichen. Es bietet eine Methode zur Definition von Schnittstellen, die sowohl von [Nachrichten](TODO) (Messages), [Diensten](TODO) (Services) als auch [Aktionen](TODO) (Actions) gemeinsam genutzt werden können. Hier sind die Schlüsselkonzepte der ROS2 Schnittstellen:
+Die ROS2 Schnittstellen (Interfaces) sind eine wichtige Weiterentwicklung im ROS2-Framework, welche dazu dient, die Definition und Verwendung von Nachrichten, Diensten und Aktionen in einem ROS2-System zu vereinheitlichen. Es bietet eine Methode zur Definition von Schnittstellen, die sowohl von [Nachrichten](TODO) (Messages), [Diensten](TODO) (Services) als auch [Aktionen](TODO) (Actions) gemeinsam genutzt werden können.
 
-1. **Nachrichten, Dienste und Aktionen**:
+## Schlüsselkonzepte
+
+### Nachrichten, Dienste und Aktionen
    ROS2 unterstützt Nachrichten für asynchrone Datenübertragung über _Topics_, Dienste für synchrone Kommunikation und Aktionen für komplexere, lang andauernde Aufgaben. Jede dieser Kommunikationsformen verwendet spezifische Nachrichtentypen, die zuvor separat definiert wurden.
 
-2. **Schnittstellen**:
+### Schnittstellen
    Ein ROS2 Interface ist eine strukturierte Definition, die sowohl von Nachrichten, Diensten als auch Aktionen gemeinsam genutzt werden kann. Die Verwendung von Interfaces führt zur Wiederverwendung von Datenstrukturen und fördert die Codequalität und -konsistenz.
 
-3. **Nachrichten-Schnittstellen**:
+### Nachrichten-Schnittstellen
    ROS2 ermöglicht die Definition von Nachrichten mithilfe von Interfaces. Eine Nachricht kann mehrere Felder enthalten, die aus den Typen und Namen bestehen, die in der zugehörigen Interface-Definition festgelegt sind. Nachrichten-Interfaces sind in ROS2-Schnittstellendateien (`.msg`) definiert.
 
-4. **Dienst-Schnittstellen**:
+### Dienst-Schnittstellen
    Dienst-Interfaces werden verwendet, um sowohl die Anfrage- als auch die Antwortseite eines Dienstes zu definieren. Dienst-Interfaces werden ebenfalls in Schnittstellendateien (`.srv`) erstellt und können in Service-Servern und -Clients verwendet werden.
 
-5. **Aktions-Schnittstellen**:
+### Aktions-Schnittstellen
    Aktionen sind komplexere Aufgaben, die mehrere Anfragen und Rückmeldungen beinhalten. Mit Aktions-Schnittstellen können sowohl die Zieldefinition als auch das Ergebnis der Aktion spezifiziert werden. Aktionen werden in ROS2-Schnittstellendateien (`.action`) definiert.
 
-6. **Wiederverwendbarkeit und Konsistenz**:
+### Wiederverwendbarkeit und Konsistenz
    Der Einsatz von Interfaces ermöglicht es, die gleichen Datenstrukturen für Nachrichten, Dienste und Aktionen zu verwenden. Dies erhöht die Codekonsistenz und -qualität und erleichtert die Pflege von ROS2-Systemen.
 
 ## Verwendungsbeispiel

@@ -2,21 +2,21 @@
 
 Dienste sind ein weiteres wichtiges Kommunikationsmittel in ROS2, die es ermöglichen, synchrone Anfragen und Antworten zwischen verschiedenen Knoten auszutauschen. Während [_Topics_](topic.md) verwendet werden, um asynchrone Datenströme zu übertragen, dienen _Services_ zur Verwaltung von synchroner Kommunikation zwischen Knoten.
 
-Hier sind die Schlüsselkonzepte:
+## Schlüsselkonzepte
 
-1. **_Service_-Nachrichten**:
+### _Service_-Nachrichten
    _Services_ verwenden [Nachrichten](TODO) zur Kommunikation, ähnlich wie _Topics_. Jedoch sind _Service_-Nachrichten in der Regel zweigeteilt, bestehend aus einer _Service_-Anfrage (_Request_) und einer _Service_-Antwort (_Response_). Die **Anfrage** enthält Informationen, die an einen Dienstleister (_Server_) gesendet werden, während die Antwort die Daten enthält, die vom Dienstleister zurückgegeben werden. Hierbei gilt zu beachten, dass die Rollenverteilung von _Server_ und _Client_ Situationsabhängig sein kann.
 
-2. **_Service-Server_**:
+### _Service-Server_
    Ein Knoten, der in der Lage ist, einen Dienst anzubieten, wird als _Service-Server_ bezeichnet. Der _Service-Server_ ist für die Entgegennahme von Anfragen und die Bereitstellung von Antworten verantwortlich. Er wartet auf Anfragen von anderen Knoten und führt die angeforderte Aktion aus, wenn eine Anfrage eingeht.
 
-3. **_Service-Client_**:
+### _Service-Client_
    Ein Knoten, der eine Anfrage an einen _Service-Server_ sendet und auf die Antwort wartet, wird als _Service-Client_ bezeichnet. Der _Service-Client_ initiiert die Kommunikation, indem er eine Anfrage an den _Service-Server_ sendet und dann auf die Antwort wartet.
 
-4. **_Service_-Namen**:
+### _Service_-Namen
    Jeder _Service_ hat einen eindeutigen Namen, der innerhalb des ROS2-Systems verwendet wird, um auf den _Service_ zuzugreifen. _Service_-Namen sind ähnlich wie _Topic_-Namen strukturiert, z.B., `/get_distance`.
 
-5. **Synchrone Kommunikation**:
+### Synchrone Kommunikation
    Im Gegensatz zu _Topics_, bei denen Daten asynchron ausgetauscht werden, sind _Services_ für synchrone Kommunikation konzipiert. Der _Service-Client_ sendet eine Anfrage an den _Service-Server_ und wartet, bis eine Antwort erhalten wird. Dies ermöglicht es, auf Anfragen und Antworten zeitlich genau abgestimmt zu reagieren.
 
 ## Beispiel
