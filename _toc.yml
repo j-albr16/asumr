@@ -70,13 +70,12 @@ parts:
           - file: ros2/interface/quiz
       - file: ros2/service
         sections:
-          - file: ros2/service/konzept.md
-          - file: ros2/service/beispiel.md
-          - file: ros2/service/aufgabe.md
-          - file: ros2/service/quiz.md
+          - file: ros2/service/beispiel
+          - file: ros2/service/aufgabe
+          - file: ros2/service/quiz
       - file: ros2/navigation
         sections:
-          - file: ros2/navigation/setup.md
-          - file: ros2/navigation/example.md
-          - file: ros2/navigation/aufgabe.md
+          - file: ros2/navigation/setup
+          - file: ros2/navigation/example
+          - file: ros2/navigation/aufgabe
       - file: ros2/abschlussaufgabe
