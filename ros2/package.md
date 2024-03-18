@@ -1,6 +1,4 @@
-# Pakete
-
-## Konzept
+# Package
 
 Ein Paket ist eine Organisationsstruktur für deinen ROS2-Code. Innerhalb eines Pakets ist der Quellcode definiert, um ROS2-Artefakte wie Nodes, Topics und Services zu erstellen.
 
@@ -40,7 +38,7 @@ Wenn du neue Pakete erstellst, kannst du diese in den `~/ros2_ws/src` Ordner leg
 Der Name deines Arbeitsbereiches muss hierbei nicht `ros2_ws` sein, sondern kann beliebig gewählt werden. Beachte hierbei, dass das Anhängsel `_ws` für _workspace_ jedoch gebräuchlich ist, um Arbeitsbereiche einfach als solche erkennen zu können.
 ```
 
-## Weitere Informationen und Übungshilfen
+## Vertiefung
 
 ```{tableofcontents}
 ```
