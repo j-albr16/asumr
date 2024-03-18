@@ -48,6 +48,7 @@ parts:
         - file: ros2/setup/macos
         - file: ros2/setup/vm
         - file: ros2/setup/sourcen
+        - file: ros2/setup/gazebo
       - file: ros2/package
         sections:
         - file: ros2/package/create
