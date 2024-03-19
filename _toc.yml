@@ -76,7 +76,6 @@ parts:
           - file: ros2/service/quiz
       - file: ros2/navigation
         sections:
-          - file: ros2/navigation/setup
           - file: ros2/navigation/example
           - file: ros2/navigation/aufgabe
       - file: ros2/abschlussaufgabe
