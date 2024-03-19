@@ -7,6 +7,9 @@ build:
 	jupyter-book build --all .;
 	make include
 
+rebuild:
+	make clean
+	make build
 
 url:
 	python3 jupyterhub.py
