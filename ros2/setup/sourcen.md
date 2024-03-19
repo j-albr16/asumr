@@ -26,8 +26,16 @@ Jedes mal, wenn ihr euren Arbeitsbereich mit `colcon` neu baut, also nachdem ihr
 
 ## .bashrc
 
-Unter Linux habt ihr eine Datei in eurem Home-Ordner, welche die Grundeinstellungen für jedes neu geöffnete Terminalfenster beinhaltet. Einerseits könnt ihr den obigen Befehl in jedem Terminal erneut ausführen, andererseits besteht damit auch die Möglichkeit dies automatisiert auszuführen.
+Unter Linux hast du eine Datei in deinem Home-Ordner, welche die Grundeinstellungen für jedes neu geöffnete Terminalfenster beinhaltet. Einerseits kannst du den obigen Befehl in jedem Terminal erneut ausführen, andererseits besteht damit auch die Möglichkeit dies automatisiert auszuführen.
 
-Dazu fügt ihr diesen Befehl einfach am Ende der Datei `~/.bashrc` hinzu.
+Dazu fügst du diesen Befehl einfach am Ende der Datei `~/.bashrc` hinzu.
 
-Alternativ könnt ihr eigene Befehle für auch in eine getrennte Datei auslagern. Dann muss nur diese Datei in der `.bashrc` gecourced werden.
+Dies erfolgt über den Editor deiner Wahl oder per
+```bash
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+```
+
+Alternativ kannst du eigene Befehle für auch in eine getrennte Datei auslagern. Dann muss nur diese Datei in der `.bashrc` gesourced werden.
+
+```{note}
+Nachdem du deine `~/.bashrc` bearbeitet hast, muss diese im aktuellen Fenster selbst noch gesourced werden - oder du kannst einfach ein neues Terminalfester öffnen, damit die Änderungen aktiv werden. 
