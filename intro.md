@@ -8,5 +8,9 @@ Ansonsten ist unser Bestreben hier eine gute Übersicht über die für die Vorle
 
 Das Material dieses Jupyter Books ist in zwei Hauptabschnitte aufgeteilt, welche im Verlaufe der Vorlesung zunehmen parallel nutzen werdet. Zu Beginn jedoch habt ihr hier die Möglichkeit im Abschnitt **Vorlesung** ohne ROS2 Vorkenntnisse die theoretischen Konzepte auszuprobieren. Direkt zu Beginn werdet ihr dann parallel die Gelegenheit haben, die notwendigen Python Grundlagen zu erlernen oder aufzufrischen, die ihr dann folgend zum Bearbeiten der ROS2 Übungen benötigt. Die entsprechende Materialien zur Erarbeitung der **ROS2** Konzepte findet ihr im Gleichnamigen Abschnitt.
 
+## Sprache
+
+Diese Dokumente werden zwar in Deutsch verfasst, jedoch werden wir an vielen Stellen die englischen Begriffe verwenden, um euch an die ROS2 Syntax zu gewöhnen. Englische Lehnswörter werden wir im Allgemeinen kursiv kennzeichnen: _syntactically totally important word_.
+
 ```{tableofcontents}
 ```

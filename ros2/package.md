@@ -1,6 +1,6 @@
 # Package
 
-Ein Paket ist eine Organisationsstruktur für deinen ROS2-Code. Innerhalb eines Pakets ist der Quellcode definiert, um ROS2-Artefakte wie Nodes, Topics und Services zu erstellen.
+Ein Paket ist eine Organisationsstruktur für deinen ROS2-Code. Innerhalb eines Pakets ist der Quellcode definiert, um ROS2-Artefakte wie _Nodes_, _Topics_ und _Services_ zu erstellen.
 
 Pakete bieten auch eine einfache Möglichkeit, ROS2-Code mit anderen zu teilen:
 
@@ -26,7 +26,7 @@ asumr_package/
 
 ## Arbeitsbereich
 
-Ein ROS2-Arbeitsbereich ist ein Ordner, der alle deine Pakete enthält.
+Ein ROS2-_Workspace_ (Arbeitsbereich) ist ein Ordner, der alle deine Pakete enthält.
 
 ```bash
 mkdir -p ~/ros2_ws/src
