@@ -7,9 +7,9 @@ Nav2 ist eine Paketsammlung, welche die Implementierung von Navigation in unsere
 - Pfadplanung
 - Sensordatenkonvertierung einer Umgebungswelt
 
-# Setup
+## Setup
 
-## Nav2
+### Nav2
 
 Installiere die **ros navigation** Pakete mit dem folgenden Befehl:
 
@@ -17,7 +17,7 @@ Installiere die **ros navigation** Pakete mit dem folgenden Befehl:
 sudo apt install ros-humble-navigation2 ros-humble-nav2-bringup
 ```
 
-## Turtlebot3
+### Turtlebot3
 
 Ein _TurtleBot_ ist ein beliebter mobiler Roboter, der für Bildungs- und Forschungszwecke entwickelt wurde. Er verfügt über grundlegende Sensoren zur Umgebungs- und Positionsbestimmung. Auf dem Logo dieser Dokumentsammlung ist übrigens eine spielerische Interpretation des _TurtleBots_ dargestellt.
 
@@ -27,7 +27,7 @@ Installiere die notwendigen Pakete zur Simulation und Steuerung eines Turtlebots
 sudo apt install ros-humble-turtlebot3*
 ```
 
-## SLAM
+### SLAM
 
 SLAM steht für _**S**imultaneous **L**ocalization **a**nd **M**apping_. Es bezeichnet ein Verfahren, bei dem ein Roboter gleichzeitig eine Karte seiner Umgebung erstellt und seine Position darin bestimmt.
 
