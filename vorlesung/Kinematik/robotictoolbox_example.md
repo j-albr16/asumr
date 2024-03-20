@@ -16,6 +16,7 @@ kernelspec:
 The roboticstoolbox provides kinematics calculations for multiple common manipulator arms. Here, we will just demonstrate using these. For more information see the [documentation](https://petercorke.github.io/robotics-toolbox-python/).
 
 ```{code-cell} ipython3
+:tags: ["hide-cell"]
 # Install the pip package in the current Jupyter kernel if neccessary 
 import sys
 !{sys.executable} -m pip install roboticstoolbox-python
@@ -57,6 +58,8 @@ print(panda)
 
 For more advanced simulation, see the documentation and running the toolbox locally on your system. This allows to setup the nice swift simulator in your browser.
 
-![](https://petercorke.github.io/robotics-toolbox-python/_images/swift.png){width=400px})
+```{image} https://petercorke.github.io/robotics-toolbox-python/_images/swift.png
+:width: 400px
+```
 
 +++
