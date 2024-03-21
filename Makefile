@@ -14,7 +14,7 @@ rebuild:
 url:
 	python3 jupyterhub.py
 
-server:
+serve:
 	python3 api/main.py
 
 pid:

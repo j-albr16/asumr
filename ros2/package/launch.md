@@ -58,6 +58,16 @@ def generate_launch_description():
 
 Dieses launch file erstellt 2 turtlesim Nodes wobei auch 2 Turtlesim Fenster gestartet werden. Anschließend wird ebenfalls eine Turtlesim mimic Node erstellt, welche den Pose Topic von turtlesim1 subscribed und den Geschwindigkeitswert and über den /cmd_vel Topic and Turtlesim2 published. Mehr dazu bei dem [Kapitel zu ROS2 Topics](../topic).
 
+:::{note}
+
+Es muss ebenfalls folgende Zeile zum `package.xml` hinzugefügt werden
+```xml
+<exec_depend>ros2launch</exec_depend>
+```
+
+:::
+
+
 
 ## Starte ein Launch File
 

@@ -14,6 +14,34 @@ kernelspec:
 
 ## Hintergrund
 
+Die Markov Lokalisation ist ein Verfahren zur Lokalisation eines `Agent` in einer Umgebung. Die Umgebung ist durch eine Menge von Zuständen $x$ gegeben. Der `Agent` kann sich in dieser Umgebung bewegen und Messungen $z$ durchführen. Die Messungen sind nicht perfekt und können zu falschen Schlüssen führen. Die Bewegungen des `Agent` sind ebenfalls nicht perfekt und können zu unerwarteten Zustandsübergängen führen. Die Markov Lokalisation ist ein Verfahren, welches die Wahrscheinlichkeitsverteilung des Zustands des `Agent` schätzt.
+
+:::{note}
+    - $x_t$ ist der Zustand des `Agent` zum Zeitpunkt $t$
+    - $u_t$ ist die Bewegung des `Agent` zum Zeitpunkt $t$
+    - $z_t$ ist die Messung des `Agent` zum Zeitpunkt $t$
+    - $b(x_t)$ ist die Wahrscheinlichkeitsverteilung des Zustands des `Agent` zum Zeitpunkt $t$
+    - $p(a|b)$ ist die Wahrscheinlichkeit von $a$ gegeben $b$
+:::
+
+Die Markov Lokalisation Algorithmus besteht aus zwei Schritten:
+
+1. **Prediction**: Der `Agent` führt eine Bewegung durch. Die Wahrscheinlichkeitsverteilung des Zustands des `Agent` wird anhand der Bewegung geschätzt.
+
+\begin{align*}
+    b'(x_t) = \sum_{x_{t-1}} p(x_t | u_t, x_{t-1}) b(x_{t-1})
+\end{align*}
+
+2. **Update**: Der `Agent` führt eine Messung durch. Die Wahrscheinlichkeitsverteilung des Zustands des `Agent` wird anhand der Messung geschätzt.
+
+\begin{align*}
+    b(x_t) = \eta p(z_t | x_t) b'(x_t)
+\end{align*}
+
+Die Wahrscheinlichkeitsverteilung des Zustands des `Agent` wird iterativ geschätzt.
+
+
+Die Hintergründe können ausführliche in folgendem [Buch](https://docs.ufpr.br/~danielsantos/ProbabilisticRobotics.pdf) nachgelesen werden. Dort finden Sie auch weitere Beispiele für die Markov Lokalisation.
 
 ## Aufgabe
 
@@ -31,6 +59,16 @@ Gegeben ist ein 1D Array der länge `len`, auf welchem sich ein `Agent` nach rec
 \end{align*}
 
 Folgendes sind die Wahrscheinlichkeiten für die Messwerte:
+
+:::{note}
+
+Den folgenden Term ließt man wie folgt: Die Wahrscheinlichkeit, dass der Sensor `z` den Wert `wall` hat, gegeben, dass der `Agent` sich an der Position `x=0` befindet, beträgt 0.8.
+
+\begin{align*}
+   &&\     p(z='wall' | x=0) &\ = 0.8 \\
+\end{align*}
+
+:::
 
 \begin{align*}
    &&\     p(z='wall' | x=0) &\ = 0.8 \\
@@ -62,7 +100,7 @@ Dieser Mechanismus ist duch folgende Wahrscheinlichkeitsverteilungen gegeben:
 
 Für alle verbleibenden Konfigurationen von $$x_t, u_t, x_{t-1}$$ ist die Wahrscheinlichkeit null.
 
-Implementieren Sie die Klasse `Agent`, die die Methoden `p_x, p_z, predict` und `update` besitzt. Die `update` Methode soll die geglaubte State Wahrscheinlichkeitsverteilen $b(x_t)` (`self.bel$) updaten. `self.bel` wird beim iterativen Aufruf von `Agent` verwendet um die Ergebnisse darzustellen.
+Implementieren Sie die Klasse `Agent`, die die Methoden `p_x, p_z, predict` und `update` implementiert. Die `update` Methode soll die geglaubte State Wahrscheinlichkeitsverteilen $b(x_t)` (`self.bel$) updaten. `self.bel` wird beim iterativen Aufruf von `Agent` verwendet um die Ergebnisse darzustellen.
 
 ```{code-cell} ipython3
 import numpy as np
