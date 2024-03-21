@@ -1,16 +1,6 @@
----
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
----
-
 # Erstelle ein Package
+
+TODO: `colcon` Installation
 
 ## Generell
 
@@ -66,6 +56,8 @@ Anschließend kannst du die erstellte Node mit folgendem Befehl starten:
 ros2 run demo demo_node
 > Hi from demo.
 ```
+
+TODO: Wo kommt die Nachricht her? Da fehlt sicher noch was.
 
 
 

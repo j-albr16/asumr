@@ -1,10 +1,10 @@
 # Linux
 
-## ROS 2 Humble Installationsanleitung für Ubuntu 22.04 LTS (Jammy)
+## ROS2 Humble Installationsanleitung für Ubuntu 22.04 LTS (Jammy)
 
-Herzlich willkommen zur Installationsanleitung für ROS 2 Humble! Wenn du zum ersten Mal mit diesem Thema zu tun hast, keine Sorge, wir werden dich durch den Einrichtungsprozess Schritt für Schritt begleiten.
+Herzlich willkommen zur Installationsanleitung für ROS2 Humble! Wenn du zum ersten Mal mit diesem Thema zu tun hast, keine Sorge, wir werden dich durch den Einrichtungsprozess Schritt für Schritt begleiten.
 
-Diese Anleitung basiert auf der offiziellen [Installationsanleitung für ROS 2 Humble auf Ubuntu](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html).
+Diese Anleitung basiert auf der offiziellen [Installationsanleitung für ROS2 Humble auf Ubuntu](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html).
 
 ## Installation
 
@@ -66,6 +66,8 @@ Jetzt bist du bereit, ROS2 Humble zu installieren:
 sudo apt install ros-humble-desktop
 ```
 
+Nach der Bestätigung kann dies nun etwas länger dauern.
+
 ## Überprüfung der Installation
 
 Um die Installation zu überprüfen, öffne zwei Terminalfenster und führe die folgenden Befehle aus:
@@ -100,17 +102,13 @@ Hier werden die Nachrichten nun empfangen und man erhält eine Ausgabe in der fo
 ...
 ```
 
+Die Prozesse könnt ihr nun mit <kbd>Strg + C</kbd> beenden und bei Bedarf die Terminalausgabe mit `clear` säubern.
+
 ## Turtlesim
 
 Turtlesim ist ein einfaches ROS-Paket, das eine virtuelle Schildkrötenrobotersimulation bietet. Es dient dazu, grundlegende ROS-Konzepte wie das Veröffentlichen und Abonnieren von Nachrichten sowie die Steuerung von Robotern zu demonstrieren. Im Folgenden bieten wir einen Teaser zur Verwendung von Turtlesim, einschließlich Installation, Ausführung der Simulation und interaktiver Steuerung der virtuellen Schildkröte. Tauche ein und entdecke die Welt der Robotersimulation mit Turtlesim!
 
 ### Installation
-
-Um Turtlesim zu installieren, führe den folgenden Befehl aus:
-
-```bash
-sudo apt install ros-humble-turtlesim
-```
 
 Überprüfe, ob das Turtlesim-Paket installiert ist:
 
@@ -119,22 +117,28 @@ ros2 pkg executables turtlesim
 ```
 
 ```{note}
-Falls du dich mittlerweile in einem neuen Konsolenfester befindest, kann es sein, dass bash auf einmal kein `ros2` mehr kennt. Um dies zu beheben, musst du noch einmal neu mit `source /opt/ros/humble/setup.bash` sourcen.
+Falls du dich mittlerweile in einem neuen Konsolenfester befindest, kann es sein, dass bash auf einmal kein `ros2` mehr kennt. Um dies zu beheben, musst du noch einmal neu mit `source /opt/ros/humble/setup.bash` [sourcen](sourcen.md).
 Dies kannst du natürlich auch direkt in deine `.bashrc` einbinden.
 ```
 
 Du solltest die folgende Ausgabe sehen:
 
-```
+```bash
 turtlesim draw_square
 turtlesim mimic
 turtlesim turtle_teleop_key
 turtlesim turtlesim_node
 ```
 
+Da du bereits das ROS Desktop Paket installiert hast, ist Turtlesim schon auf deinem System vorhanden. Um Turtlesim noch einmal getrennt zu installieren, führe den folgenden Befehl aus:
+
+```bash
+sudo apt install ros-humble-turtlesim
+```
+
 ### Ausführung
 
-Um die Turtlesim-Simulation zu starten, führe aus:
+Um die Turtlesim-Simulation zu starten, führe folgenden Befehl aus:
 
 ```bash
 ros2 run turtlesim turtlesim_node
