@@ -10,6 +10,12 @@ Die Anwendung von Kinematik in der Robotik reicht von industriellen Fertigungsan
 
 Im Rahmen der Vorlesung interessieren uns vor allem die **direkte Kinematik** (forward kinematic) und die **inverse Kinematik** (inverse kinematic).
 
+```{note}
+Zu unterscheiden sind hier Kinematik und Kinetik. Während es bei der Kinematik um Bewegungen geht, betrachtet die Kinetik Kräfte und Drehmomente.
+
+Die Roboterkinematik behandelt entsprechend die grundlegende Fragestellung wie die Einstellung der beweglichen Teile eines Roboters, also seine Gelenke oder Räder mit der Pose des Roboters zusammenhängen.
+```
+
 ## Vertiefung
 
 ```{tableofcontents}
